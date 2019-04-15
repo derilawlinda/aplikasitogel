@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
+using AplikasiTog.DAL;
 
 
 namespace AplikasiTog.Services
@@ -45,7 +46,22 @@ namespace AplikasiTog.Services
             }
         }
 
-        
+        public void InsertTransaction(Transaction entity)
+        {
+            using (var unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork>())
+            {
+                var transactionRepo = unitOfWork.Repository<Transaction>();
+                TogelContext togelContext = new TogelContext();
+                togelContext.Transactions.Add(entity);
+                togelContext.SaveChanges();
+                
+
+            }
+        }
+
+
+
+
 
 
     }

@@ -24,6 +24,8 @@ namespace AplikasiTog.ViewModels.Transactions
             PostDataRetrievalDelegate = (list) =>
             {
                 transactionService.UpdateCanSelect(list);
+
+                
             };          
 
         }

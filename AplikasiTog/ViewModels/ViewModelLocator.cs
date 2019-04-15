@@ -35,6 +35,7 @@ namespace AplikasiTog.ViewModels
 
             #region Register Repositories
             container.RegisterType<IRepository<User>, Repository<User>>();
+            container.RegisterType<IRepository<Transaction>, Repository<Transaction>>();
 
             #endregion
 
@@ -85,6 +86,7 @@ namespace AplikasiTog.ViewModels
             }
         }
 
+      
         public TransactionUserAutocompleteViewModel TransactionUserAutocompletes
         {
             get

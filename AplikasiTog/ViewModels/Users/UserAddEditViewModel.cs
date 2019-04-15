@@ -8,7 +8,7 @@ namespace AplikasiTog.ViewModels.Users
         public UserAddEditViewModel()
             : base()
         {
+        }
 
-     }
     }
 }
