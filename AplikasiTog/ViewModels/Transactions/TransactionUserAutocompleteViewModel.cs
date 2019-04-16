@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using AplikasiTog.Services;
 using GenericCodes.Core.Repositories;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
-
+using AplikasiTog.UIServices;
 namespace AplikasiTog.ViewModels.Transactions
 {
     public class TransactionUserAutocompleteViewModel : GenericCrudBase<Transaction>, INotifyPropertyChanged
@@ -58,10 +58,31 @@ namespace AplikasiTog.ViewModels.Transactions
                             combinationList.Add(Int32.Parse(String.Join("", combination)));
                         }
                         Transaction trx = new Transaction();
-                        trx.UserID = selectedItem.UserID;
-                        trx.BetAmount = 500;
-                        _transactionService.InsertTransaction(trx);
+                        if (_normalBet)
+                        {
+                            trx.UserID = selectedItem.UserID;
+                            trx.BetAmount = NormalBetAmount;
+                            trx.BetNumber = BetNumber;
+                            trx.Date = DateTime.Now;
+                            try
+                            {
+                                _transactionService.InsertTransaction(trx);
+                                DialogService dialog = new DialogService();
+                                dialog.ShowOKDialog("Info", "Taruhan terpasang");
 
+                            }
+                            catch
+                            {
+                                DialogService dialog = new DialogService();
+                                dialog.ShowConfirmDialog("Error", "Taruhan TIDAK terpasang");
+                            }
+                        }
+                        else
+                        {
+
+                        }
+
+                        
 
 
                     }));
@@ -106,6 +127,13 @@ namespace AplikasiTog.ViewModels.Transactions
             get { return togelContext.Users.ToList(); }
         }
 
+        int _NormalBetAmout;
+        public int NormalBetAmount
+        {
+            get { return _NormalBetAmout; }
+            set { SetField(ref _NormalBetAmout, value); }
+        }
+
         long? _BB2ABetAmout;
         public long? BB2ABetAmout
         {
@@ -139,6 +167,20 @@ namespace AplikasiTog.ViewModels.Transactions
         {
             get { return selectedValue; }
             set { SetField(ref selectedValue, value); }
+        }
+
+        bool _normalBet;
+        public bool NormalBet
+        {
+            get { return _normalBet;}
+            set { SetField(ref _normalBet, value); }
+        }
+
+        int _betNumber;
+        public int BetNumber
+        {
+            get { return _betNumber; }
+            set { SetField(ref _betNumber, value); }
         }
     }
 }

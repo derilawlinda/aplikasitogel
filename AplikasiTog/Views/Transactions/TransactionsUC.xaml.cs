@@ -30,13 +30,16 @@ namespace AplikasiTog.Views.Transactions
         {
 
             this.AmountTextBox.Visibility = Visibility.Visible;
+            this.NumberTextBox.MaxLength = 4;
             BBGrid.Visibility = Visibility.Hidden;
+
         }
 
         private void OnBBChecked(object sender, RoutedEventArgs e)
         {
             BBGrid.Visibility = Visibility.Visible;
             AmountTextBox.Visibility = Visibility.Hidden;
+            this.NumberTextBox.MaxLength = 0;
         }
 
         private void AmountTextBox_Loaded(object sender, RoutedEventArgs e)
