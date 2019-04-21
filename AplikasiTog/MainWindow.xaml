@@ -17,7 +17,9 @@
             <Fluent:RibbonTabItem Header="Home">
                 <Fluent:RibbonGroupBox Header="">
                     <Fluent:Button Header="Bet" Click="Bet_Button_Click"/>
+                    <Fluent:Button Header="Nomor Hari Ini" Click="Nomor_Button_Click"/>
                     <Fluent:Button Header="User" Click="User_Button_Click"/>
+                    
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
 

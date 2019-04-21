@@ -8,6 +8,7 @@ using AplikasiTog.DAL;
 using AplikasiTog.Services.Interfaces;
 using AplikasiTog.ViewModels.Users;
 using AplikasiTog.ViewModels.Transactions;
+using AplikasiTog.ViewModels.Nomors;
 using AplikasiTog.Services;
 using Microsoft.Practices.ServiceLocation;
 using Unity;
@@ -36,6 +37,7 @@ namespace AplikasiTog.ViewModels
             #region Register Repositories
             container.RegisterType<IRepository<User>, Repository<User>>();
             container.RegisterType<IRepository<Transaction>, Repository<Transaction>>();
+            container.RegisterType<IRepository<Nomor>, Repository<Nomor>>();
 
             #endregion
 
@@ -46,6 +48,7 @@ namespace AplikasiTog.ViewModels
             #region Register Business Services
             container.RegisterType<IUsersInterface, UsersService>();
             container.RegisterType<ITransactionsInterface, TransactionsService>();
+            container.RegisterType<INomorsInterface, NomorsService>();
             //container.RegisterType<IService<Category>, Service<Category>>();
             #endregion
 
@@ -61,6 +64,10 @@ namespace AplikasiTog.ViewModels
             container.RegisterType<TransactionSearchViewModel>();
             container.RegisterType<TransactionAddEditViewModel>();
             container.RegisterType<TransactionUserAutocompleteViewModel>();
+
+            container.RegisterType<NomorViewModel>();
+            container.RegisterType<NomorSearchViewModel>();
+            container.RegisterType<NomorAddEditViewModel>();
 
 
 
@@ -86,7 +93,15 @@ namespace AplikasiTog.ViewModels
             }
         }
 
-      
+        public NomorViewModel Nomors
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<NomorViewModel>();
+            }
+        }
+
+
         public TransactionUserAutocompleteViewModel TransactionUserAutocompletes
         {
             get

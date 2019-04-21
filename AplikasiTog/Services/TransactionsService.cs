@@ -20,6 +20,7 @@ namespace AplikasiTog.Services
         {
 
         }
+        TogelContext togelContext = new TogelContext();
         public List<Transaction> GetALL()
         {
             using (var unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork>())
@@ -48,21 +49,19 @@ namespace AplikasiTog.Services
 
         public void InsertTransaction(Transaction entity)
         {
-            using (var unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork>())
-            {
-                var transactionRepo = unitOfWork.Repository<Transaction>();
-                TogelContext togelContext = new TogelContext();
-                togelContext.Transactions.Add(entity);
-                togelContext.SaveChanges();
-                
-
-            }
+            
+            togelContext.Transactions.Add(entity);
+            togelContext.SaveChanges();
         }
 
-
-
-
-
+        public void InsertTransactionList(List<Transaction> entities)
+        {
+            foreach (var entity in entities)
+            {
+                togelContext.Transactions.Add(entity);
+            }
+            togelContext.SaveChanges();
+        }
 
     }
 }

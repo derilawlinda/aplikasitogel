@@ -6,6 +6,26 @@
              xmlns:local="clr-namespace:AplikasiTog.Views.Users"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                                </TextBlock>
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                <Border BorderBrush="red" BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,7 +33,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -22,16 +43,22 @@
 
                            VerticalAlignment="Center"
 
-                           Margin="5,0,16,4"
+                           Margin="5,4,15.667,6"
 
-                           Text="Nama"/>
+                           Text="Nama" Height="16"/>
         <TextBox Grid.Row="0" 
                  Grid.Column="1"
                  VerticalAlignment="Center"
-                 Margin="0,0,5,4"
+                 Margin="0.333,3,0,5"
                  Width="300"
-                 Text="{Binding Entity.Name}"
-                 HorizontalAlignment="Left"/>
+                 Text="{Binding Entity.Name, 
+                        Mode=TwoWay,  
+                        UpdateSourceTrigger=PropertyChanged, 
+                        NotifyOnTargetUpdated=True, 
+                        ValidatesOnDataErrors=True, 
+                        ValidatesOnExceptions=True}"
+                 HorizontalAlignment="Left" Height="18"
+                 />
 
         <TextBlock Grid.Row="1"
 
@@ -39,21 +66,21 @@
 
                            VerticalAlignment="Center"
 
-                           Margin="5,0,16,4"
+                           Margin="5,3,15.667,7"
 
-                           Text="Discount"/>
+                           Text="Discount" Height="16"/>
         <TextBox  Grid.Row="1"
 
                            Grid.Column="1"
 
                            VerticalAlignment="Center"
 
-                           Margin="0,0,5,4"
+                           Margin="0.333,2,0,6"
                   
                            Width="300"
                            HorizontalAlignment="Left"
 
-                           Text="{Binding Entity.Discount}"/>
+                           Text="{Binding Entity.Discount}" Height="18"/>
 
     </Grid>
 </UserControl>

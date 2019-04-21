@@ -143,14 +143,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DAL\Models\Nomor.cs" />
     <Compile Include="DAL\Models\Transaction.cs" />
     <Compile Include="DAL\TogelContext.cs" />
+    <Compile Include="Services\Interfaces\INomorsInterface.cs" />
     <Compile Include="Services\Interfaces\ITransactionsInterface.cs" />
     <Compile Include="Services\Interfaces\IUsersInterface.cs" />
+    <Compile Include="Services\NomorsService.cs" />
     <Compile Include="Services\TransactionsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="UIServices\DialogService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Nomors\NomorAddEditViewModel.cs" />
+    <Compile Include="ViewModels\Nomors\NomorSearchViewModel.cs" />
+    <Compile Include="ViewModels\Nomors\NomorViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionAddEditViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionSearchViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionUserAutocompleteViewModel.cs" />
@@ -159,6 +165,9 @@
     <Compile Include="ViewModels\Users\UserSearchViewModel.cs" />
     <Compile Include="ViewModels\Users\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\Nomors\NomorUC.xaml.cs">
+      <DependentUpon>NomorUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Transactions\TransactionsUC.xaml.cs">
       <DependentUpon>TransactionsUC.xaml</DependentUpon>
     </Compile>
@@ -183,6 +192,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Nomors\NomorUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Transactions\TransactionsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

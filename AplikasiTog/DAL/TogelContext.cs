@@ -12,6 +12,7 @@ namespace AplikasiTog.DAL
         }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Nomor> Nomors { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -20,6 +21,10 @@ namespace AplikasiTog.DAL
                 .HasRequired(t => t.User)
                 .WithMany(u => u.Transactions)
                 .HasForeignKey(s => s.UserID);
+
+            modelBuilder.Entity<User>()
+            .HasIndex(u => u.Name)
+            .IsUnique();
         }
     }
 }

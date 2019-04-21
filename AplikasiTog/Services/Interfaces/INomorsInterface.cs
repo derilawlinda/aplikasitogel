@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 namespace AplikasiTog.Services.Interfaces
 {
-    public interface IUsersInterface : IService<User>
+    public interface INomorsInterface : IService<Nomor>
     {
-        void UpdateCanSelect(List<User> entities);
-        List<User> GetALL();
-
+        void UpdateCanSelect(List<Nomor> entities);
+        List<Nomor> GetALL();
     }
 }

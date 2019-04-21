@@ -13,6 +13,8 @@ using AplikasiTog.Services;
 using GenericCodes.Core.Repositories;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using AplikasiTog.UIServices;
+using System.Data.Entity.Validation;
+
 namespace AplikasiTog.ViewModels.Transactions
 {
     public class TransactionUserAutocompleteViewModel : GenericCrudBase<Transaction>, INotifyPropertyChanged
@@ -39,7 +41,6 @@ namespace AplikasiTog.ViewModels.Transactions
         }     
 
         TogelContext togelContext = new TogelContext();
-        ViewModelLocator locator = new ViewModelLocator();
 
         private RelayCommand _addBetCommand;
         public RelayCommand AddBetCommand
@@ -50,16 +51,16 @@ namespace AplikasiTog.ViewModels.Transactions
                     ?? (_addBetCommand = new RelayCommand(
                     () =>
                     {
-                        int[] integers = { 1, 1, 2, 4, 5 };
-                        var combinations = EnumeratePermutations2(integers);
-                        var combinationList = new List<int>();
-                        foreach (var combination in combinations)
+                        DialogService dialog = new DialogService();
+                        if (selectedItem == null)
                         {
-                            combinationList.Add(Int32.Parse(String.Join("", combination)));
+                            dialog.ShowErrorDialog("Error", "Pilih nama akun");
+                            return;
                         }
-                        Transaction trx = new Transaction();
+
                         if (_normalBet)
                         {
+                            Transaction trx = new Transaction();
                             trx.UserID = selectedItem.UserID;
                             trx.BetAmount = NormalBetAmount;
                             trx.BetNumber = BetNumber;
@@ -67,19 +68,88 @@ namespace AplikasiTog.ViewModels.Transactions
                             try
                             {
                                 _transactionService.InsertTransaction(trx);
-                                DialogService dialog = new DialogService();
                                 dialog.ShowOKDialog("Info", "Taruhan terpasang");
 
                             }
-                            catch
+                            catch(DbEntityValidationException ex)
                             {
-                                DialogService dialog = new DialogService();
-                                dialog.ShowConfirmDialog("Error", "Taruhan TIDAK terpasang");
+                                
+                                dialog.ShowErrorDialog("Error", ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage);
                             }
                         }
                         else
                         {
+                            int[] integers = BetNumber.ToString().Select(c => Convert.ToInt32(c.ToString())).ToArray();
+                            var combinations = EnumeratePermutations2(integers);
+                            var combinationList = new List<int>();
+                            List<Transaction> transactionList = new List<Transaction>();
+                            foreach (var combination in combinations)
+                            {
+                                combinationList.Add(Int32.Parse(String.Join("", combination)));
+                            }
+                            foreach (var combination in combinationList)
+                            {
+                                try
+                                {
+                                    
+                                    if (!BB2AIsChecked && !BB3AIsChecked && !BB4AIsChecked)
+                                    {
+                                        dialog.ShowErrorDialog("Error", "Ceklis salah satu set");
+                                        return;
 
+                                    }
+                                    if(combination.ToString().Length >= 2)
+                                    {
+                                        if (combination.ToString().Length == 2 && BB2AIsChecked)
+                                        {
+                                            Transaction trx = new Transaction();
+                                            trx.UserID = selectedItem.UserID;
+                                            trx.BetNumber = combination;
+                                            trx.Date = DateTime.Now;
+                                            trx.BetAmount = BB2ABetAmout;
+                                            transactionList.Add(trx);
+
+                                        }
+                                        else if (combination.ToString().Length == 3 && BB3AIsChecked)
+                                        {
+                                            Transaction trx = new Transaction();
+                                            trx.UserID = selectedItem.UserID;
+                                            trx.BetNumber = combination;
+                                            trx.Date = DateTime.Now;
+                                            trx.BetAmount = BB3ABetAmout;
+                                            transactionList.Add(trx);
+                                        }
+                                        else if (combination.ToString().Length == 4 && BB4AIsChecked)
+                                        {
+                                            Transaction trx = new Transaction();
+                                            trx.UserID = selectedItem.UserID;
+                                            trx.BetNumber = combination;
+                                            trx.Date = DateTime.Now;
+                                            trx.BetAmount = BB4ABetAmount;
+                                            transactionList.Add(trx);
+                                        }
+                                    }
+                                    
+                                }catch(DbEntityValidationException ex)
+                                {
+                                    dialog.ShowErrorDialog("Error", ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage);
+                                }
+                                
+                            }
+                            if(transactionList.Count > 0)
+                            {
+                                try
+                                {
+                                    _transactionService.InsertTransactionList(transactionList);
+                                    dialog.ShowOKDialog("Info", "Taruhan terpasang");
+                                }
+                                catch (Exception ex)
+                                {
+                                    dialog.ShowOKDialog("Error", ex.Message.ToString());
+                                }
+                            }
+                            
+                                
                         }
 
                         
@@ -134,25 +204,25 @@ namespace AplikasiTog.ViewModels.Transactions
             set { SetField(ref _NormalBetAmout, value); }
         }
 
-        long? _BB2ABetAmout;
-        public long? BB2ABetAmout
+        double _BB2ABetAmout;
+        public double BB2ABetAmout
         {
             get { return _BB2ABetAmout; }
             set { SetField(ref _BB2ABetAmout, value); }
         }
 
-        long? _BB3ABetAmout;
-        public long? BB3ABetAmout
+        double _BB3ABetAmout;
+        public double BB3ABetAmout
         {
             get { return _BB3ABetAmout; }
             set { SetField(ref _BB3ABetAmout, value); }
         }
 
-        long? _BB4ABetAmout;
-        public long? BB4ABetAmout
+        double _BB4ABetAmount;
+        public double BB4ABetAmount
         {
-            get { return _BB4ABetAmout; }
-            set { SetField(ref _BB4ABetAmout, value); }
+            get { return _BB4ABetAmount; }
+            set { SetField(ref _BB4ABetAmount, value); }
         }
 
         User selectedItem;
@@ -181,6 +251,27 @@ namespace AplikasiTog.ViewModels.Transactions
         {
             get { return _betNumber; }
             set { SetField(ref _betNumber, value); }
+        }
+
+        bool _bb2aIsChecked;
+        public bool BB2AIsChecked
+        {
+            get { return _bb2aIsChecked; }
+            set { SetField(ref _bb2aIsChecked, value); }
+        }
+
+        bool _bb3aIsChecked;
+        public bool BB3AIsChecked
+        {
+            get { return _bb3aIsChecked; }
+            set { SetField(ref _bb3aIsChecked, value); }
+        }
+
+        bool _bb4aIsChecked;
+        public bool BB4AIsChecked
+        {
+            get { return _bb4aIsChecked; }
+            set { SetField(ref _bb4aIsChecked, value); }
         }
     }
 }

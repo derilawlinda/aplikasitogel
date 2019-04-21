@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="AplikasiTog.Views.Nomors.NomorUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AplikasiTog.Views.Nomors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding Nomors,Source={StaticResource Locator}}">
+    <Grid Margin="32,10,10,233" RenderTransformOrigin="0.514,0.138">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="134"  />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            
+
+        </Grid.RowDefinitions>
+
+        <Label Margin="10,10,10,10.333" Grid.Column="0">Nomor Hari Ini</Label>
+        <TextBox x:Name="NumberTextBox" Grid.Row="0" Margin="10,9.667,8,15.667" Grid.Column ="1" Text="{Binding NomorHariIni}" />
+        <Button Content="Submit"  Grid.Row="5" Grid.Column="1" Margin="531,9.333,11,7.667" RenderTransformOrigin="0.5,0.505" Command="{Binding SubmitNomorHariIni}"/>
+    </Grid>
+</UserControl>

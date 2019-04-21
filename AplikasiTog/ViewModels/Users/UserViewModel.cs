@@ -1,6 +1,8 @@
 ﻿using AplikasiTog.DAL.Models;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using AplikasiTog.Services.Interfaces;
+using AplikasiTog.DAL;
+using System.Linq;
 
 namespace AplikasiTog.ViewModels.Users
 {
@@ -14,6 +16,9 @@ namespace AplikasiTog.ViewModels.Users
             {
                 userService.UpdateCanSelect(list);
             };
+
         }
-     }
+
+
+    }
 }

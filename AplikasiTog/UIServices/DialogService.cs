@@ -55,13 +55,19 @@ namespace AplikasiTog.UIServices
 
         public bool ShowConfirmDialog(string title, string message)
         {
-            var messageBoxResult = MessageBox.Show(message, title, MessageBoxButton.YesNo);
+            var messageBoxResult = MessageBox.Show(message, title, MessageBoxButton.YesNo,MessageBoxImage.Information);
             return messageBoxResult == MessageBoxResult.Yes;
         }
 
         public bool ShowOKDialog(string title, string message)
         {
-            var messageBoxResult = MessageBox.Show(message, title, MessageBoxButton.OK);
+            var messageBoxResult = MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
+            return messageBoxResult == MessageBoxResult.OK;
+        }
+
+        public bool ShowErrorDialog(string title, string message)
+        {
+            var messageBoxResult = MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
             return messageBoxResult == MessageBoxResult.OK;
         }
 

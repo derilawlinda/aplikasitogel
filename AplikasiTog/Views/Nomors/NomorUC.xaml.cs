@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AplikasiTog.Views.Users
+namespace AplikasiTog.Views.Nomors
 {
     /// <summary>
-    /// Interaction logic for UserAddEdit.xaml
+    /// Interaction logic for NomorUC.xaml
     /// </summary>
-    public partial class UserAddEdit : UserControl
+    public partial class NomorUC : UserControl
     {
-        public UserAddEdit()
+        public NomorUC()
         {
             InitializeComponent();
-            
         }
     }
 }

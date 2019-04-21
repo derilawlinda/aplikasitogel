@@ -73,12 +73,12 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <CheckBox Name="CheckBoxBB2A" Content="BB2A" Margin="4" MinWidth="93" Grid.Column="0"  />
+            <CheckBox Name="CheckBoxBB2A" Content="BB2A" Margin="4" MinWidth="93" Grid.Column="0" IsChecked="{Binding BB2AIsChecked}"  />
             <TextBox MinWidth="93" x:Name="BB2ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Text="{Binding BB2ABetAmout}"/>
-            <CheckBox Name="CheckBoxBB3A" Content="BB3A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="1"  />
+            <CheckBox Name="CheckBoxBB3A" Content="BB3A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="1" IsChecked="{Binding BB3AIsChecked}"  />
             <TextBox MinWidth="93" x:Name="BB3ABetAmount" Margin="4,4.333,411,4" Grid.Column="1" Grid.Row="1" Text="{Binding BB3ABetAmout}"/>
-            <CheckBox Name="CheckBoxBB4A" Content="BB4A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="2"  />
-            <TextBox MinWidth="93" x:Name="BB4ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Grid.Row="2" Text="{Binding BB4ABetAmout}"/>
+            <CheckBox Name="CheckBoxBB4A" Content="BB4A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="2"  IsChecked="{Binding BB4AIsChecked}" />
+            <TextBox MinWidth="93" x:Name="BB4ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Grid.Row="2" Text="{Binding BB4ABetAmount}"/>
 
         </Grid>
 

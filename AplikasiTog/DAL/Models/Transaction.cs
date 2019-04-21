@@ -19,6 +19,8 @@ namespace AplikasiTog.DAL.Models
 
         public int UserID { get; set; }
         public double BetAmount { get; set; }
+
+        [Range(10, int.MaxValue, ErrorMessage = "Nomor harus lebih dari 2 digit")]
         public int BetNumber { get; set; }
         public DateTime Date { get; set; }
 

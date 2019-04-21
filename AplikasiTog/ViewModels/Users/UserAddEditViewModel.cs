@@ -1,5 +1,9 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using AplikasiTog.DAL;
+using AplikasiTog.DAL.Models;
+using System.Linq;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
+using System;
+using System.ComponentModel;
 
 namespace AplikasiTog.ViewModels.Users
 {
@@ -8,7 +12,13 @@ namespace AplikasiTog.ViewModels.Users
         public UserAddEditViewModel()
             : base()
         {
+            
         }
+
+
+
+
+
 
     }
 }

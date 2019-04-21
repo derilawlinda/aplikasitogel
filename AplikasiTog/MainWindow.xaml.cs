@@ -37,6 +37,11 @@ namespace AplikasiTog
             this.contentControl.Content = new Views.Transactions.TransactionsUC();
         }
 
+        private void Nomor_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.contentControl.Content = new Views.Nomors.NomorUC();
+        }
+
         private void HandleMethod(object sender, RoutedEventArgs e)
         {
             

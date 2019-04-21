@@ -9,40 +9,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
-using AplikasiTog.DAL;
-using AplikasiTog.UIServices;
 
 namespace AplikasiTog.Services
 {
-    public class UsersService : Service<User>, IUsersInterface
+    public class NomorsService : Service<Nomor>, INomorsInterface
     {
-        public UsersService(IRepository<User> repository) : base(repository)
+        public NomorsService(IRepository<Nomor> repository) : base(repository)
         {
 
         }
-        
-        public List<User> GetALL()
+        public List<Nomor> GetALL()
         {
             using (var unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork>())
             {
-                var users = unitOfWork.Repository<User>().List().ToList();
-                return users;
+                var nomors = unitOfWork.Repository<Nomor>().List().ToList();
+                return nomors;
             }
-        }        
+        }
 
-        public void UpdateCanSelect(List<User> entities)
+        public void UpdateCanSelect(List<Nomor> entities)
         {
             using (var unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork>())
             {
-                var userRepo = unitOfWork.Repository<User>();
-                List<int> usedIds = userRepo.List().Select(p => p.UserID).ToList();
+                var nomorRepo = unitOfWork.Repository<Nomor>();
+                List<int> usedIds = nomorRepo.List().Select(p => p.NomorID).ToList();
                 entities.ForEach(t =>
                 {
                     t.IsSelectable = true;
                 });
             }
         }
-
-        
     }
+
 }
