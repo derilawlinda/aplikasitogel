@@ -9,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
+using AplikasiTog.DAL;
 
 namespace AplikasiTog.Services
 {
     public class NomorsService : Service<Nomor>, INomorsInterface
     {
+        TogelContext togelContext = new TogelContext();
         public NomorsService(IRepository<Nomor> repository) : base(repository)
         {
 
@@ -38,6 +40,38 @@ namespace AplikasiTog.Services
                     t.IsSelectable = true;
                 });
             }
+        }
+        public Nomor GetTodayNomor()
+        {
+            Nomor lastNomor = togelContext.Nomors.ToList().Where(n => n.Date.Date == DateTime.Now.Date).FirstOrDefault();
+            return lastNomor;
+        }
+        public void InserTodayNumber(Nomor nomor)
+        {
+            togelContext.Nomors.Add(nomor);
+            togelContext.SaveChanges();
+        }
+
+        public bool IsTodayNumberExist()
+        {
+            var todayNumber = togelContext.Nomors.ToList().Where(n => n.Date.Date == DateTime.Now.Date).FirstOrDefault();
+            if(todayNumber != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void UpdateTodayNumber(int winningNomor)
+        {
+            var todayNumber = togelContext.Nomors.ToList().Where(n => n.Date.Date == DateTime.Now.Date).FirstOrDefault();
+            todayNumber.WinningNomor = winningNomor;
+            togelContext.SaveChanges();
+
+
         }
     }
 

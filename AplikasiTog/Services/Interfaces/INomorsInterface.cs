@@ -8,5 +8,10 @@ namespace AplikasiTog.Services.Interfaces
     {
         void UpdateCanSelect(List<Nomor> entities);
         List<Nomor> GetALL();
+
+        Nomor GetTodayNomor();
+        void InserTodayNumber(Nomor nomor);
+        bool IsTodayNumberExist();
+        void UpdateTodayNumber(int winningNomor);
     }
 }

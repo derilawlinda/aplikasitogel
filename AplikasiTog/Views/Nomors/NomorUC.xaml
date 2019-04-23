@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <Label Margin="10,10,10,10.333" Grid.Column="0">Nomor Hari Ini</Label>
-        <TextBox x:Name="NumberTextBox" Grid.Row="0" Margin="10,9.667,8,15.667" Grid.Column ="1" Text="{Binding NomorHariIni}" />
+        <TextBox x:Name="NomorHariIni" Grid.Row="0" Margin="10,9.667,8,15.667" Grid.Column ="1" Text="{Binding NomorHariIni, Mode=TwoWay}" />
         <Button Content="Submit"  Grid.Row="5" Grid.Column="1" Margin="531,9.333,11,7.667" RenderTransformOrigin="0.5,0.505" Command="{Binding SubmitNomorHariIni}"/>
     </Grid>
 </UserControl>

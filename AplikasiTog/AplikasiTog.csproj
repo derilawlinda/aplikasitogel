@@ -96,6 +96,21 @@
     <Reference Include="ServiceLocation, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ServiceLocation.1.3.1\lib\net45\ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Grid.WPF, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Grid.WPF.17.1.0.42\lib\net46\Syncfusion.Grid.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.WPF, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.GridCommon.WPF.17.1.0.42\lib\net46\Syncfusion.GridCommon.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.17.1.0.42\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Linq.Base, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Linq.Base.17.1.0.42\lib\net46\Syncfusion.Linq.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.17.1.0.42\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -144,12 +159,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DAL\Models\Nomor.cs" />
+    <Compile Include="DAL\Models\Setting.cs" />
     <Compile Include="DAL\Models\Transaction.cs" />
     <Compile Include="DAL\TogelContext.cs" />
     <Compile Include="Services\Interfaces\INomorsInterface.cs" />
+    <Compile Include="Services\Interfaces\ISettingsInterface.cs" />
     <Compile Include="Services\Interfaces\ITransactionsInterface.cs" />
     <Compile Include="Services\Interfaces\IUsersInterface.cs" />
     <Compile Include="Services\NomorsService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\TransactionsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="UIServices\DialogService.cs" />
@@ -157,6 +175,9 @@
     <Compile Include="ViewModels\Nomors\NomorAddEditViewModel.cs" />
     <Compile Include="ViewModels\Nomors\NomorSearchViewModel.cs" />
     <Compile Include="ViewModels\Nomors\NomorViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingAddEditViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingSearchViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionAddEditViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionSearchViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionUserAutocompleteViewModel.cs" />
@@ -167,6 +188,9 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Nomors\NomorUC.xaml.cs">
       <DependentUpon>NomorUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingUC.xaml.cs">
+      <DependentUpon>SettingUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Transactions\TransactionsUC.xaml.cs">
       <DependentUpon>TransactionsUC.xaml</DependentUpon>
@@ -193,6 +217,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Nomors\NomorUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SettingUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

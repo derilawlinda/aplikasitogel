@@ -15,11 +15,15 @@
 
             <!--Tabs-->
             <Fluent:RibbonTabItem Header="Home">
-                <Fluent:RibbonGroupBox Header="">
+                <Fluent:RibbonGroupBox Header="User and Transactions">
                     <Fluent:Button Header="Bet" Click="Bet_Button_Click"/>
                     <Fluent:Button Header="Nomor Hari Ini" Click="Nomor_Button_Click"/>
                     <Fluent:Button Header="User" Click="User_Button_Click"/>
                     
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Settings" HorizontalAlignment="Right">
+                    <Fluent:Button Header="Setting" Click="Setting_Button_Click" HorizontalAlignment="Right"/>                  
+
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
 

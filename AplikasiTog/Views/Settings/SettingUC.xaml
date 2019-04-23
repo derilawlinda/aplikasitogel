@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="AplikasiTog.Views.Settings.SettingUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AplikasiTog.Views.Settings"
+             mc:Ignorable="d"
+             DataContext="{Binding Settings,Source={StaticResource Locator}}"
+             d:DesignWidth="800" Height="600">
+    <Border BorderBrush="Black" BorderThickness="1" Height="180" VerticalAlignment="Top">
+        <Grid RenderTransformOrigin="0.514,0.138" Height="180" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="134" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="0"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Height="26" Margin="38,50,42,104" Width="54" >Winning</Label>
+
+            <Grid Grid.Column="1" Grid.Row="0" Margin="0,0,0,56" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"  />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">2 Nomor</Label>
+                <TextBox x:Name="Winning2NomorTextBox" Grid.Row="0" Height="20" Width="57" HorizontalAlignment="Left" Grid.Column ="1" Text="{Binding Setting2NomorWinning, Mode=TwoWay}" Margin="4.667,6,0,5.333"  />
+                <TextBlock Grid.Row="0" Margin="53.667,10,471,3.333" RenderTransformOrigin="0.5,0.5" Grid.Column="1" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.255"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.996"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>x</TextBlock>
+                <Label Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" >3 Nomor</Label>
+                <TextBox x:Name="Winning3NomorTextBox" Grid.Row="1" Height="20" Width="57" HorizontalAlignment="Left" Grid.Column ="1" Text="{Binding Setting3NomorWinning, Mode=TwoWay}" Margin="4.667,5.667,0,4.333"  />
+                <TextBlock Grid.Row="1" Margin="53.667,11.667,471,1.667" RenderTransformOrigin="0.5,0.5" Grid.Column="1" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.255"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.996"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>x</TextBlock>
+                <Label Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">4 Nomor</Label>
+                <TextBox x:Name="Winning4NomorTextBox" Grid.Row="2" Height="20" Width="57" HorizontalAlignment="Left" Grid.Column ="1" Text="{Binding Setting4NomorWinning, Mode=TwoWay}" Margin="4.667,5.667,0,4.333"  />
+                <TextBlock Grid.Row="2" Margin="53.667,11.333,471,2" RenderTransformOrigin="0.5,0.5" Grid.Column="1" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.255"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.996"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>x</TextBlock>
+
+            </Grid>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Content="Save" Grid.Column="1" Height="30" Command="{Binding SaveSettingCommand}" Margin="0,0,10,10"/>
+
+
+        </Grid>
+
+
+
+    </Border>
+</UserControl>

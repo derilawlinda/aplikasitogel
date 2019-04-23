@@ -15,6 +15,7 @@ using Unity;
 using System;
 using System.Collections.Generic;
 using Unity.Lifetime;
+using AplikasiTog.ViewModels.Settings;
 
 namespace AplikasiTog.ViewModels
 {
@@ -38,6 +39,7 @@ namespace AplikasiTog.ViewModels
             container.RegisterType<IRepository<User>, Repository<User>>();
             container.RegisterType<IRepository<Transaction>, Repository<Transaction>>();
             container.RegisterType<IRepository<Nomor>, Repository<Nomor>>();
+            container.RegisterType<IRepository<Setting>, Repository<Setting>>();
 
             #endregion
 
@@ -49,6 +51,7 @@ namespace AplikasiTog.ViewModels
             container.RegisterType<IUsersInterface, UsersService>();
             container.RegisterType<ITransactionsInterface, TransactionsService>();
             container.RegisterType<INomorsInterface, NomorsService>();
+            container.RegisterType<ISettingsInterface, SettingsService>();
             //container.RegisterType<IService<Category>, Service<Category>>();
             #endregion
 
@@ -68,6 +71,10 @@ namespace AplikasiTog.ViewModels
             container.RegisterType<NomorViewModel>();
             container.RegisterType<NomorSearchViewModel>();
             container.RegisterType<NomorAddEditViewModel>();
+
+            container.RegisterType<SettingViewModel>();
+            container.RegisterType<SettingSearchViewModel>();
+            container.RegisterType<SettingAddEditViewModel>();
 
 
 
@@ -98,6 +105,14 @@ namespace AplikasiTog.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<NomorViewModel>();
+            }
+        }
+
+        public SettingViewModel Settings
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SettingViewModel>();
             }
         }
 
