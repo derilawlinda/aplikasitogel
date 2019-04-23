@@ -45,27 +45,24 @@ namespace AplikasiTog.Services
         public Dictionary<string,string> GetSettingKeyValuePairs()
         {
             Dictionary<string, string> SettingDict = new Dictionary<string, string>();
-            string Winning2NomorKey = togelContext.Settings.Find(1).SettingName;
-            string Winning3NomorKey = togelContext.Settings.Find(2).SettingName;
-            string Winning4NomorKey = togelContext.Settings.Find(3).SettingName;
-            string Winning2NomorValue = togelContext.Settings.Find(1).SettingValue;
-            string Winning3NomorValue = togelContext.Settings.Find(2).SettingValue;
-            string Winning4NomorValue = togelContext.Settings.Find(3).SettingValue;
+            List<Setting> settings = togelContext.Settings.ToList<Setting>();
 
-            SettingDict.Add(Winning2NomorKey, Winning2NomorValue);
-            SettingDict.Add(Winning3NomorKey, Winning3NomorValue);
-            SettingDict.Add(Winning4NomorKey, Winning4NomorValue);
-
+            foreach(Setting setting in settings)
+            {
+                SettingDict.Add(setting.SettingName, setting.SettingValue);
+            }
+           
             return SettingDict;
         }
 
-        public void UpdateSettings(string winning2Nomor, string winning3Nomor, string winning4Nomor)
+        public void UpdateSettings(string winning2Nomor, string winning3Nomor, string winning4Nomor, string bettingThreshold)
         {
             string Winning2NomorValue = togelContext.Settings.Find(1).SettingValue;
             string Winning3NomorValue = togelContext.Settings.Find(2).SettingValue;
             string Winning4NomorValue = togelContext.Settings.Find(3).SettingValue;
+            string BettingThreshold = togelContext.Settings.Find(4).SettingValue;
 
-            if(Winning2NomorValue != winning2Nomor)
+            if (Winning2NomorValue != winning2Nomor)
             {
                 Setting winning = togelContext.Settings.Find(1);
                 winning.SettingValue = winning2Nomor;
@@ -81,6 +78,18 @@ namespace AplikasiTog.Services
             {
                 Setting winning = togelContext.Settings.Find(3);
                 winning.SettingValue = winning4Nomor;
+            }
+
+            if (Winning4NomorValue != winning4Nomor)
+            {
+                Setting winning = togelContext.Settings.Find(3);
+                winning.SettingValue = winning4Nomor;
+            }
+
+            if (BettingThreshold != bettingThreshold)
+            {
+                Setting setting = togelContext.Settings.Find(4);
+                setting.SettingValue = bettingThreshold;
             }
 
             togelContext.SaveChanges();

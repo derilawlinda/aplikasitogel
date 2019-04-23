@@ -15,7 +15,7 @@ namespace AplikasiTog.Services.Interfaces
 
         Dictionary<string, string> GetSettingKeyValuePairs();
 
-        void UpdateSettings(string winning2Nomor, string winning3Nomor, string winning4Nomor);
+        void UpdateSettings(string winning2Nomor, string winning3Nomor, string winning4Nomor, string bettingThreshold);
 
     }
 }

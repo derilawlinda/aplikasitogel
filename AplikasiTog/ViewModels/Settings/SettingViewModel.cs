@@ -103,6 +103,27 @@ namespace AplikasiTog.ViewModels.Settings
 
         }
 
+        private string _bettingThreshold;
+        public string BettingThreshold
+        {
+            get
+            {
+
+
+                if (_bettingThreshold == null)
+                {
+                    _bettingThreshold = SettingDictionary["BettingThreshold"];
+                }
+                return _bettingThreshold;
+            }
+            set
+            {
+                this._bettingThreshold = value;
+                this.RaisePropertyChanged("BettingThreshold");
+            }
+
+        }
+
         private RelayCommand _saveSettingCommand;
         DialogService dialog = new DialogService();
         public RelayCommand SaveSettingCommand
@@ -115,7 +136,7 @@ namespace AplikasiTog.ViewModels.Settings
                     {
                         try
                         {
-                            _settingService.UpdateSettings(Setting2NomorWinning, Setting3NomorWinning, Setting4NomorWinning);
+                            _settingService.UpdateSettings(Setting2NomorWinning, Setting3NomorWinning, Setting4NomorWinning, BettingThreshold);
                             dialog.ShowOKDialog("Info", "Setting tersimpan");
                         }
                         catch (Exception ex)
