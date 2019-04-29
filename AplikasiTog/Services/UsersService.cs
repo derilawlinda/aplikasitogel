@@ -20,7 +20,7 @@ namespace AplikasiTog.Services
         {
 
         }
-        
+
         public List<User> GetALL()
         {
             using (var unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork>())

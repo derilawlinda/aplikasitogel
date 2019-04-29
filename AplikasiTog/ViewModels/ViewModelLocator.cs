@@ -83,6 +83,13 @@ namespace AplikasiTog.ViewModels
             UnityServiceLocator locator = new UnityServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => locator);
         }
+        public MainViewModel Mains
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
         public UserViewModel Users
         {
             get

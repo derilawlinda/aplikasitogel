@@ -41,7 +41,8 @@ namespace AplikasiTog.ViewModels.Transactions
         }     
 
         TogelContext togelContext = new TogelContext();
-
+        
+        
         private RelayCommand _addBetCommand;
         public RelayCommand AddBetCommand
         {
@@ -87,6 +88,7 @@ namespace AplikasiTog.ViewModels.Transactions
                             {
                                 combinationList.Add(Int32.Parse(String.Join("", combination)));
                             }
+                            combinationList = combinationList.Distinct().ToList();
                             foreach (var combination in combinationList)
                             {
                                 try
@@ -140,8 +142,26 @@ namespace AplikasiTog.ViewModels.Transactions
                             {
                                 try
                                 {
-                                    _transactionService.InsertTransactionList(transactionList);
-                                    dialog.ShowOKDialog("Info", "Taruhan terpasang");
+                                    int BetsLength2 = transactionList.Where(t => t.BetNumber.ToString().Length == 2).Count();
+                                    int BetsLength3 = transactionList.Where(t => t.BetNumber.ToString().Length == 3).Count();
+                                    int BetsLength4 = transactionList.Where(t => t.BetNumber.ToString().Length == 4).Count();
+                                    bool dialogResponse = dialog.ShowConfirmDialog("Info", 
+                                        String.Format("Jumlah yang harus dibayarkan oleh {0} : ", SelectedItem.Name) + Environment.NewLine +
+                                        String.Format("2 Angka : {0} nomor x {1} = {2} ", BetsLength2, BB2ABetAmout, (BetsLength2 * BB2ABetAmout)) + Environment.NewLine +
+                                        String.Format("3 Angka : {0} nomor x {1} = {2} ", BetsLength3, BB3ABetAmout, (BetsLength3 * BB3ABetAmout)) + Environment.NewLine +
+                                        String.Format("4 Angka : {0} nomor x {1} = {2} ", BetsLength4, BB4ABetAmount, (BetsLength4 * BB4ABetAmount)) + Environment.NewLine +
+                                        String.Format("Total : {0} ", (BetsLength2 * BB2ABetAmout)+ (BetsLength3 * BB3ABetAmout) + (BetsLength4 * BB4ABetAmount))
+                                        );
+
+                                    if (dialogResponse)
+                                    {
+                                        _transactionService.InsertTransactionList(transactionList);
+                                        dialog.ShowOKDialog("Info", "Taruhan terpasang");
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }                                    
                                 }
                                 catch (Exception ex)
                                 {
@@ -197,8 +217,8 @@ namespace AplikasiTog.ViewModels.Transactions
             get { return togelContext.Users.ToList(); }
         }
 
-        int _NormalBetAmout;
-        public int NormalBetAmount
+        double _NormalBetAmout;
+        public double NormalBetAmount
         {
             get { return _NormalBetAmout; }
             set { SetField(ref _NormalBetAmout, value); }

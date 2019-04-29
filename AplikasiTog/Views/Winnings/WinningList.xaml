@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="AplikasiTog.Views.Winnings.WinningList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                             xmlns:local="clr-namespace:AplikasiTog.Views.TransactionReports"
+                             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+                             mc:Ignorable="d" d:DesignWidth="800" Height="400"
+                             syncfusion:LayoutControl.SetMetroMode="True"
+                            >
+        <Grid DataContext="{Binding Transactions,Source={StaticResource Locator}}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding TodayText}" Grid.RowSpan="2" FontSize="24" Margin="10,10,-10,-10"></TextBlock>
+            <syncfusion:LayoutControl Grid.Row="1" UserOptionsVisibility="Hidden" HeaderPanelVisibility="Hidden"
+                                  LayoutMode="Metro">
+                <syncfusion:LayoutControl.GridView>
+                    <syncfusion:SfDataGrid Name="sfgrid"
+                                       AllowDraggingColumns="True"
+                                       AllowEditing="False"
+                                       AllowFiltering="True"
+                                       AllowGrouping="True"
+                                       ItemsSource="{Binding TransactionAggregates}"
+                                       ShowGroupDropArea="True" 
+                                       Margin="5"
+                                       ColumnSizer="Star"
+                                       >
+                        <syncfusion:SfDataGrid.DetailsViewDefinition>
+                            <syncfusion:GridViewDefinition RelationalColumn="TransactionPerNomor">
+                                <syncfusion:GridViewDefinition.DataGrid>
+                                    <syncfusion:SfDataGrid x:Name="DetailsViewGrid"
+                                        AllowEditing="True"
+                                        AutoGenerateColumns="False"
+                                        NavigationMode="Cell">
+                                        <syncfusion:SfDataGrid.Columns>
+                                            <syncfusion:GridTextColumn HeaderText="Name" MappingName="UserName" />
+                                            <syncfusion:GridTextColumn HeaderText="Jumlah Bet" MappingName="BetAmount" />
+
+                                        </syncfusion:SfDataGrid.Columns>
+                                    </syncfusion:SfDataGrid>
+                                </syncfusion:GridViewDefinition.DataGrid>
+                            </syncfusion:GridViewDefinition>
+                        </syncfusion:SfDataGrid.DetailsViewDefinition>
+                    </syncfusion:SfDataGrid>
+                </syncfusion:LayoutControl.GridView>
+
+            </syncfusion:LayoutControl>
+        </Grid>
+    </UserControl>
+
+

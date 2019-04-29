@@ -4,7 +4,8 @@
         xmlns:Fluent="urn:fluent-ribbon"
         Title="Aplikasi" 
         Height="600" 
-        Width="800">
+        Width="800"
+        DataContext="{Binding Mains,Source={StaticResource Locator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -16,26 +17,26 @@
             <!--Tabs-->
             <Fluent:RibbonTabItem Header="Home">
                 <Fluent:RibbonGroupBox Header="User and Transactions">
-                    <Fluent:Button Header="Bet" Click="Bet_Button_Click"/>
-                    <Fluent:Button Header="Nomor Hari Ini" Click="Nomor_Button_Click"/>
-                    <Fluent:Button Header="User" Click="User_Button_Click"/>
+                    <Fluent:Button Header="Bet" Click="Bet_Button_Click" LargeIcon="pack://application:,,,/AplikasiTog;component/Resources/bet.png"/>
+                    <Fluent:Button Header="Nomor Hari Ini" Click="Nomor_Button_Click" LargeIcon="pack://application:,,,/AplikasiTog;component/Resources/nomorhariini.png"/>
+                    <Fluent:Button Header="User" Click="User_Button_Click" LargeIcon="pack://application:,,,/AplikasiTog;component/Resources/gambler.png"/>
                     
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Settings" HorizontalAlignment="Right">
-                    <Fluent:Button Header="Setting" Click="Setting_Button_Click" HorizontalAlignment="Right"/>                  
+                    <Fluent:Button Header="Setting" Click="Setting_Button_Click" HorizontalAlignment="Right" LargeIcon="pack://application:,,,/AplikasiTog;component/Resources/cog.png"/>                  
 
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
 
             <Fluent:RibbonTabItem Header="Summary">
                 <Fluent:RibbonGroupBox>
-                    <Fluent:Button Header="Transaksi" />
-                    <Fluent:Button Header="Rekapitulasi Taruhan"/>
-                    <Fluent:Button Header="Rekapitulasi Kemenangan"/>
+                    <Fluent:Button Header="Transaksi" Click="Transaksi_Button_Click" LargeIcon="pack://application:,,,/AplikasiTog;component/Resources/transactionSummary.png" />
+                    <Fluent:Button Header="Rekapitulasi Taruhan" Click="Transaksi_Aggregate_Button_Click" LargeIcon="pack://application:,,,/AplikasiTog;component/Resources/numberDocument.png"/>
+                    <Fluent:Button Header="Rekapitulasi Kemenangan" Click="Rekap_Kemenangan_Click" LargeIcon="pack://application:,,,/AplikasiTog;component/Resources/userDocument.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
-
-        <ContentControl x:Name="contentControl" Grid.Row="1"/>
+        
+        <UserControl x:Name="contentControl" Grid.Row="1"/>
     </Grid>
 </Fluent:RibbonWindow>

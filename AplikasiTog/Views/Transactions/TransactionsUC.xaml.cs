@@ -17,8 +17,6 @@ namespace AplikasiTog.Views.Transactions
         public TransactionsUC()
         {
             InitializeComponent();
-            
-
         }
 
         private void HandleMethod(object sender, RoutedEventArgs e)

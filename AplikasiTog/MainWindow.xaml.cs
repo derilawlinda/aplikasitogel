@@ -25,6 +25,8 @@ namespace AplikasiTog
         {
             InitializeComponent();
             this.contentControl.Content = new Views.Transactions.TransactionsUC();
+            
+
         }
 
         private void User_Button_Click(object sender, RoutedEventArgs e)
@@ -47,6 +49,23 @@ namespace AplikasiTog
             this.contentControl.Content = new Views.Settings.SettingUC();
         }
 
+        private void Transaksi_Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            this.contentControl.Content = new Views.TransactionReports.TransactionReportUC();
+        }
+
+        private void Transaksi_Aggregate_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.contentControl.Content = new Views.TransactionReports.TransactionReportByNumberUC();
+        }
+
+        private void Rekap_Kemenangan_Click(object sender, RoutedEventArgs e)
+        {
+            this.contentControl.Content = new Views.TransactionReports.TransactionReportByUserUC();
+        }
+
+        
         private void HandleMethod(object sender, RoutedEventArgs e)
         {
             

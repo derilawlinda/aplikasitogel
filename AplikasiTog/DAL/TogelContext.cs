@@ -9,8 +9,12 @@ namespace AplikasiTog.DAL
         public TogelContext()
             : base("name=TogelContext")
         {
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
         }
+        
         public virtual DbSet<User> Users { get; set; }
+        
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<Nomor> Nomors { get; set; }
 
@@ -22,7 +26,7 @@ namespace AplikasiTog.DAL
             modelBuilder.Entity<Transaction>()
                 .HasRequired(t => t.User)
                 .WithMany(u => u.Transactions)
-                .HasForeignKey(s => s.UserID);
+                .HasForeignKey(t => t.UserID);
 
             modelBuilder.Entity<User>()
             .HasIndex(u => u.Name)

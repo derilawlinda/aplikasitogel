@@ -10,14 +10,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using AplikasiTog.DAL;
-
+using System.Collections.ObjectModel;
 
 namespace AplikasiTog.Services
 {
     public class TransactionsService : Service<Transaction>, ITransactionsInterface
     {
-        public TransactionsService(IRepository<Transaction> repository) : base(repository)
+
+        private readonly INomorsInterface _nomorService;
+        private readonly ISettingsInterface _settingService;
+        public TransactionsService(IRepository<Transaction> repository, INomorsInterface nomorService, ISettingsInterface settingService) : base(repository)
         {
+            _nomorService = nomorService;
+            _settingService = settingService;
+
 
         }
         TogelContext togelContext = new TogelContext();
@@ -28,6 +34,62 @@ namespace AplikasiTog.Services
                 var transactions = unitOfWork.Repository<Transaction>().List().ToList();
                 return transactions;
             }
+        }
+        public List<TodayTransaction> GetTodayTransactions()
+        {
+            List<TodayTransaction> todayTransaction = new List<TodayTransaction>();
+            var todayQuery = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
+            t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day
+            );
+
+            if(todayQuery.Count() > 0)
+            {
+                todayTransaction = todayQuery
+               .Select(t => new TodayTransaction
+               {
+                   UserName = t.User.Name,
+                   BetAmount = t.BetAmount,
+                   BetNumber = t.BetNumber,
+                   Date = t.Date
+
+               }).ToList();
+            }
+            
+
+            return todayTransaction;
+        }
+
+        public List<BetRecap> GetAggregateTodayTransactions()
+        {
+            List<BetRecap> todayAggregateTransaction = new List<BetRecap>();
+            var queryCount = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
+            t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day).Count();
+            if (queryCount > 0)
+            {
+                todayAggregateTransaction = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
+            t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day)
+               .GroupBy(t => t.BetNumber)
+
+                .Select(t => new BetRecap
+                {
+                    TotalBetAmount = t.Sum(tr => tr.BetAmount),
+                    BetNumber = t.FirstOrDefault().BetNumber
+                }).ToList();
+                foreach (var tat in todayAggregateTransaction)
+                {
+                    tat.BetRecapDetails = togelContext.Transactions.Where(tr => (tr.BetNumber == tat.BetNumber) && (tr.Date.Year == DateTime.Today.Year &&
+                tr.Date.Month == DateTime.Today.Month && tr.Date.Day == DateTime.Today.Day)).Select(upt => new BetRecapDetail
+                {
+                    UserName = upt.User.Name,
+                    BetAmount = upt.BetAmount,
+                    BetNomor = upt.BetNumber
+                }).ToList();
+                }
+
+            
+                
+            }
+            return todayAggregateTransaction;
         }
 
         public void UpdateCanSelect(List<Transaction> entities)
@@ -62,6 +124,75 @@ namespace AplikasiTog.Services
             }
             togelContext.SaveChanges();
         }
+        
+
+        public List<Winning> GetWinningAggregator()
+        {
+
+            List<Winning> todayWinningAggregators = new List<Winning>();
+            if (_nomorService.GetTodayNomor() != null)
+            {
+                var todayWinningNomor = _nomorService.GetTodayNomor().WinningNomor;
+
+                var winningNomor2Angka = Convert.ToInt32(todayWinningNomor.ToString().Substring(2, 2));
+                var winningNomor3Angka = Convert.ToInt32(todayWinningNomor.ToString().Substring(1, 3));
+                var winningNomor4Angka = Convert.ToInt32(todayWinningNomor);
+
+                var winningMultiplier2Angka = Convert.ToInt32(_settingService.GetSettingKeyValuePairs()["Winning2Nomor"]);
+                var winningMultiplier3Angka = Convert.ToInt32(_settingService.GetSettingKeyValuePairs()["Winning3Nomor"]);
+                var winningMultiplier4Angka = Convert.ToInt32(_settingService.GetSettingKeyValuePairs()["Winning4Nomor"]);
+
+                var userIds = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
+                t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day).Select(t => t.UserID).Distinct();
+
+                Winning todayWinningAggregator = new Winning();
+                foreach (var userId in userIds)
+                {
+                    List<Transaction> todayTransactionByUsers = togelContext.Transactions.ToList().Where(t => t.Date.Date == DateTime.Today.Date && t.UserID == userId).ToList();
+                    User user = todayTransactionByUsers.First().User;
+                    todayWinningAggregator.UserName = user.Name;
+                    var discount = user.Discount;
+                    List<WinningDetail> winningDetails = new List<WinningDetail>();
+                    foreach (var ttbu in todayTransactionByUsers)
+                    {
+                        WinningDetail winningDetail = new WinningDetail();
+                        winningDetail.BetNumber = ttbu.BetNumber;
+                        winningDetail.Winning = ttbu.BetAmount * (0.01 * discount);
+                        winningDetail.Discount = discount;
+                        winningDetail.BetAmount = ttbu.BetAmount;
+                        if (ttbu.BetNumber == winningNomor2Angka)
+                        {
+                            winningDetail.Winning = ttbu.BetAmount * winningMultiplier2Angka;
+                            winningDetail.Discount = 0;
+                        };
+
+                        if (ttbu.BetNumber == winningNomor3Angka)
+                        {
+                            winningDetail.Winning = ttbu.BetAmount * winningMultiplier3Angka;
+                            winningDetail.Discount = 0;
+                        };
+
+                        if (ttbu.BetNumber == winningNomor4Angka)
+                        {
+                            winningDetail.Winning = ttbu.BetAmount * winningMultiplier4Angka;
+                            winningDetail.Discount = 0;
+                        };
+
+                        winningDetails.Add(winningDetail);
+                    }
+                    var asd = winningDetails;
+                    var winningSum = winningDetails.Sum(wd => wd.Winning);
+                    todayWinningAggregator.TotalWinning = winningSum;
+                    todayWinningAggregator.WinningDetails = winningDetails;
+                    todayWinningAggregators.Add(todayWinningAggregator);
+
+
+                }
+            }            
+            return todayWinningAggregators;
+        }
+
+        
 
     }
 }

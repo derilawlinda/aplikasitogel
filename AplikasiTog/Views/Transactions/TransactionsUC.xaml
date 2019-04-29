@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              xmlns:local="clr-namespace:AplikasiTog.Views.Transactions"
              xmlns:dotNetKitControls="clr-namespace:DotNetKit.Windows.Controls;assembly=DotNetKit.Wpf.AutoCompleteComboBox"
              mc:Ignorable="d" d:DesignWidth="800" Height="600"
              DataContext="{Binding TransactionUserAutocompletes,Source={StaticResource Locator}}"
              >
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <!-- This style applies to all auto-complete comboboxes in the window by default. -->
@@ -20,11 +22,36 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <DockPanel LastChildFill="true">
+                                <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                    <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                                    </TextBlock>
+                                </Border>
+                                <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                    <Border BorderBrush="red" BorderThickness="1" />
+                                </AdornedElementPlaceholder>
+                            </DockPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            
         </ResourceDictionary>
+        
+        
     </UserControl.Resources>
+    
+    
     <Grid Margin="32,10,10,233" RenderTransformOrigin="0.514,0.138">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="134"  />
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -38,7 +65,7 @@
         </Grid.RowDefinitions>
         <Label Margin="10,10,10,10.333" Grid.Column="0">Nama</Label>
         <dotNetKitControls:AutoCompleteComboBox
-            SelectedValuePath="UserID"
+            SelectedValuePath="User"
             TextSearch.TextPath="Name"
             
             ItemsSource="{Binding Items}"
@@ -62,7 +89,14 @@
         <RadioButton Grid.Row="2" Grid.Column="1" x:Name = "bb" Margin = "69,20,-59,0" Checked = "OnBBChecked" 
             GroupName = "Method" Content = "BB" />
         <Label x:Name="AmountTextBoxLabel" Grid.Row="3" Margin="10,22,10,0.333" Grid.Column="0" >Bet Amount</Label>
-        <TextBox x:Name="AmountTextBox" Grid.Row="3" Margin="10,10.333,8,16" Grid.Column ="1" Height="20" Visibility="Visible" Loaded="AmountTextBox_Loaded" Text="{Binding NormalBetAmount}"/>
+        <TextBox x:Name="AmountTextBox" Grid.Row="3" Margin="10,10.333,8,16" Grid.Column ="1" Height="20" Visibility="Visible" Loaded="AmountTextBox_Loaded" 
+            Text="{Binding NormalBetAmount,
+            Mode=TwoWay,
+            ValidatesOnDataErrors=True,
+            NotifyOnValidationError=True,
+            ValidatesOnExceptions=True,
+            UpdateSourceTrigger=PropertyChanged,
+            StringFormat='##,#'}"></TextBox>
         <Grid x:Name="BBGrid" Grid.Column="1" Grid.Row="2" Margin="0,49.667,0,0" Grid.RowSpan="2" Visibility="Hidden" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MaxWidth="80" />
@@ -74,11 +108,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <CheckBox Name="CheckBoxBB2A" Content="BB2A" Margin="4" MinWidth="93" Grid.Column="0" IsChecked="{Binding BB2AIsChecked}"  />
-            <TextBox MinWidth="93" x:Name="BB2ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Text="{Binding BB2ABetAmout}"/>
+            <TextBox MinWidth="93" x:Name="BB2ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Text="{Binding BB2ABetAmout}" IsEnabled="{Binding BB2AIsChecked}"/>
             <CheckBox Name="CheckBoxBB3A" Content="BB3A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="1" IsChecked="{Binding BB3AIsChecked}"  />
-            <TextBox MinWidth="93" x:Name="BB3ABetAmount" Margin="4,4.333,411,4" Grid.Column="1" Grid.Row="1" Text="{Binding BB3ABetAmout}"/>
+            <TextBox MinWidth="93" x:Name="BB3ABetAmount" Margin="4,4.333,411,4" Grid.Column="1" Grid.Row="1" Text="{Binding BB3ABetAmout}" IsEnabled="{Binding BB3AIsChecked}"/>
             <CheckBox Name="CheckBoxBB4A" Content="BB4A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="2"  IsChecked="{Binding BB4AIsChecked}" />
-            <TextBox MinWidth="93" x:Name="BB4ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Grid.Row="2" Text="{Binding BB4ABetAmount}"/>
+            <TextBox MinWidth="93" x:Name="BB4ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Grid.Row="2" Text="{Binding BB4ABetAmount}" IsEnabled="{Binding BB4AIsChecked}"/>
 
         </Grid>
 
