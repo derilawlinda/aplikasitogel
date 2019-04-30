@@ -108,15 +108,16 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <CheckBox Name="CheckBoxBB2A" Content="BB2A" Margin="4" MinWidth="93" Grid.Column="0" IsChecked="{Binding BB2AIsChecked}"  />
-            <TextBox MinWidth="93" x:Name="BB2ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Text="{Binding BB2ABetAmout}" IsEnabled="{Binding BB2AIsChecked}"/>
+            <TextBox MinWidth="93" x:Name="BB2ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Text="{Binding BB2ABetAmout, StringFormat='##,#', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding BB2AIsChecked}"/>
             <CheckBox Name="CheckBoxBB3A" Content="BB3A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="1" IsChecked="{Binding BB3AIsChecked}"  />
-            <TextBox MinWidth="93" x:Name="BB3ABetAmount" Margin="4,4.333,411,4" Grid.Column="1" Grid.Row="1" Text="{Binding BB3ABetAmout}" IsEnabled="{Binding BB3AIsChecked}"/>
+            <TextBox MinWidth="93" x:Name="BB3ABetAmount" Margin="4,4.333,411,4" Grid.Column="1" Grid.Row="1" Text="{Binding BB3ABetAmout, StringFormat='##,#', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding BB3AIsChecked}"/>
             <CheckBox Name="CheckBoxBB4A" Content="BB4A" Margin="4" MinWidth="93" Grid.Column="0" Grid.Row="2"  IsChecked="{Binding BB4AIsChecked}" />
-            <TextBox MinWidth="93" x:Name="BB4ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Grid.Row="2" Text="{Binding BB4ABetAmount}" IsEnabled="{Binding BB4AIsChecked}"/>
+            <TextBox MinWidth="93" x:Name="BB4ABetAmount" Margin="4,4,411,3.667" Grid.Column="1" Grid.Row="2" Text="{Binding BB4ABetAmount, StringFormat='##,#', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding BB4AIsChecked}"/>
 
         </Grid>
 
         <Button Content="Bet"  Grid.Row="5" Grid.Column="1" Margin="531,9.333,11,7.667" RenderTransformOrigin="0.5,0.505" Command="{Binding AddBetCommand}"/>
+        
 
 
 

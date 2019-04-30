@@ -7,10 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding Nomors,Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                                </TextBlock>
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                <Border BorderBrush="red" BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Margin="32,10,10,233" RenderTransformOrigin="0.514,0.138">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="134"  />
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -20,7 +41,9 @@
         </Grid.RowDefinitions>
 
         <Label Margin="10,10,10,10.333" Grid.Column="0">Nomor Hari Ini</Label>
-        <TextBox x:Name="NomorHariIni" Grid.Row="0" Margin="10,9.667,8,15.667" Grid.Column ="1" Text="{Binding NomorHariIni, Mode=TwoWay}" />
-        <Button Content="Submit"  Grid.Row="5" Grid.Column="1" Margin="531,9.333,11,7.667" RenderTransformOrigin="0.5,0.505" Command="{Binding SubmitNomorHariIni}"/>
+        <TextBox x:Name="NomorHariIni" Grid.Row="0" Margin="10,9.667,8,15.667" Grid.Column ="1" Text="{Binding NomorHariIni, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextBox_TextChanged" MaxLength="4" />
+        <Button x:Name="SubmitButton" Content="Submit"  Grid.Row="5" Grid.Column="1" Margin="531,9.333,11,7.667" RenderTransformOrigin="0.5,0.505" Command="{Binding SubmitNomorHariIni}" IsEnabled="False">
+            
+        </Button>
     </Grid>
 </UserControl>

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AplikasiTog.Services.Interfaces;
-using GalaSoft.MvvmLight;
 
 
 namespace AplikasiTog.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel
     {
         private readonly ITransactionsInterface _transactionService;
         public MainViewModel(ITransactionsInterface transactionService)

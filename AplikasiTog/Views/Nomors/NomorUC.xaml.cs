@@ -24,5 +24,22 @@ namespace AplikasiTog.Views.Nomors
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NomorHariIni.IsLoaded)
+            {
+                if (NomorHariIni.Text.Length == 4)
+                {
+                    SubmitButton.IsEnabled = true;
+                }
+                else
+                {
+                    SubmitButton.IsEnabled = false;
+                }
+            }
+
+            
+        }
     }
 }

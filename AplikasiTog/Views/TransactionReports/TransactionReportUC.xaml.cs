@@ -25,5 +25,6 @@ namespace AplikasiTog.Views.TransactionReports
         {
             InitializeComponent();
         }
+
     }
 }
