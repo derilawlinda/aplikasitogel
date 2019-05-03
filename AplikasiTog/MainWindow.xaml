@@ -9,6 +9,7 @@
         Icon="money.ico"
         ResizeMode="CanResizeWithGrip"   
         WindowStartupLocation="CenterScreen"
+        Background="AliceBlue"
         
         DataContext="{Binding Mains,Source={StaticResource Locator}}">
     <Grid>
@@ -42,6 +43,6 @@
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
         
-        <UserControl x:Name="contentControl" Grid.Row="1"/>
+        <UserControl x:Name="contentControl" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </syncfusion:ChromelessWindow>

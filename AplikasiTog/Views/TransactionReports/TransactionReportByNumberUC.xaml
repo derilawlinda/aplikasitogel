@@ -6,9 +6,8 @@
                              xmlns:local="clr-namespace:Apel.Views.TransactionReports"
                              xmlns:helper="clr-namespace:Apel"
                              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
-                             mc:Ignorable="d" d:DesignWidth="800" Height="400"
+                             mc:Ignorable="d" d:DesignWidth="800" Height="600"
                              syncfusion:LayoutControl.SetMetroMode="True"
-                             Background="AliceBlue"
                             >
     <UserControl.Resources>
         <helper:EccelOptionsConverter x:Key="excelOptionsConverter" />
@@ -35,10 +34,10 @@
                                           Content="Customize style for ProductName Column in Excel"
                                           Visibility="Hidden"
                                           IsChecked="False" Grid.RowSpan="2" />
-        <Button Margin="10,4,685,12"
+        <Button Width="100" Height="20" HorizontalAlignment="Left"
                                 Command="helper:Commands.ExportToExcel"
                                 CommandTarget="{Binding ElementName=sfgrid}"
-                                Content="Export to Excel" RenderTransformOrigin="0.53,-0.375" Grid.Row="1" >
+                                Content="Export to Excel" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource excelOptionsConverter}"
                                                       Mode="OneWay"
@@ -51,7 +50,7 @@
             </Button.CommandParameter>
         </Button>
         <syncfusion:LayoutControl Grid.Row="2" UserOptionsVisibility="Hidden" HeaderPanelVisibility="Hidden"
-                                  LayoutMode="Metro">
+                                  LayoutMode="Metro" Margin="0,0,0,80">
             <syncfusion:LayoutControl.GridView>
                 <syncfusion:SfDataGrid Name="sfgrid"
                                        AllowDraggingColumns="True"
@@ -87,7 +86,7 @@
                     <syncfusion:SfDataGrid.Columns>
                         <syncfusion:GridTextColumn HeaderText="User" MappingName="UserName" />
                         <syncfusion:GridCurrencyColumn HeaderText="Jumlah Taruhan" MappingName="TotalWinning" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=","/>
-                      
+
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>
             </syncfusion:LayoutControl.GridView>
