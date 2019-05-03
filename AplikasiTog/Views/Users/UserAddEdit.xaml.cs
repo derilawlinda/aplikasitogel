@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AplikasiTog.Views.Users
+namespace Apel.Views.Users
 {
     /// <summary>
     /// Interaction logic for UserAddEdit.xaml

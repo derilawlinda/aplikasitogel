@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AplikasiTog.Views.TransactionReports
+namespace Apel.Views.TransactionReports
 {
     /// <summary>
     /// Interaction logic for TransactionReportByUserUC.xaml

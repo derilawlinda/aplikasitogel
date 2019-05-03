@@ -1,8 +1,8 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using Apel.DAL.Models;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 
 
-namespace AplikasiTog.ViewModels.Nomors 
+namespace Apel.ViewModels.Nomors 
 {
     public class NomorAddEditViewModel : AddEditEntityBase<Nomor>
     {

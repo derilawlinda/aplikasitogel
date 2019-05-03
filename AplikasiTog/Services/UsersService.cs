@@ -1,5 +1,5 @@
-﻿using AplikasiTog.DAL.Models;
-using AplikasiTog.Services.Interfaces;
+﻿using Apel.DAL.Models;
+using Apel.Services.Interfaces;
 using GenericCodes.Core.Repositories;
 using GenericCodes.Core.Services;
 using GenericCodes.Core.UnitOfWork;
@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
-using AplikasiTog.DAL;
-using AplikasiTog.UIServices;
+using Apel.DAL;
+using Apel.UIServices;
 
-namespace AplikasiTog.Services
+namespace Apel.Services
 {
     public class UsersService : Service<User>, IUsersInterface
     {

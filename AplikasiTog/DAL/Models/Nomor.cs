@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AplikasiTog.DAL.Models
+namespace Apel.DAL.Models
 {
     public class Nomor : Entity
     {

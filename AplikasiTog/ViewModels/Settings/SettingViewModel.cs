@@ -1,6 +1,6 @@
-﻿using AplikasiTog.DAL.Models;
-using AplikasiTog.Services.Interfaces;
-using AplikasiTog.UIServices;
+﻿using Apel.DAL.Models;
+using Apel.Services.Interfaces;
+using Apel.UIServices;
 using GenericCodes.CRUD.WPF.Core.MVVM;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AplikasiTog.ViewModels.Settings
+namespace Apel.ViewModels.Settings
 {
     public class SettingViewModel : GenericCrudBase<Setting>, INotifyPropertyChanged
     {
@@ -103,16 +103,16 @@ namespace AplikasiTog.ViewModels.Settings
 
         }
 
-        private string _bettingThreshold;
-        public string BettingThreshold
+        private double _bettingThreshold;
+        public double BettingThreshold
         {
             get
             {
 
 
-                if (_bettingThreshold == null)
+                if (_bettingThreshold == 0)
                 {
-                    _bettingThreshold = SettingDictionary["BettingThreshold"];
+                    _bettingThreshold = Convert.ToDouble(SettingDictionary["BettingThreshold"]);
                 }
                 return _bettingThreshold;
             }
@@ -136,7 +136,7 @@ namespace AplikasiTog.ViewModels.Settings
                     {
                         try
                         {
-                            _settingService.UpdateSettings(Setting2NomorWinning, Setting3NomorWinning, Setting4NomorWinning, BettingThreshold);
+                            _settingService.UpdateSettings(Setting2NomorWinning, Setting3NomorWinning, Setting4NomorWinning, BettingThreshold.ToString());
                             dialog.ShowOKDialog("Info", "Setting tersimpan");
                         }
                         catch (Exception ex)

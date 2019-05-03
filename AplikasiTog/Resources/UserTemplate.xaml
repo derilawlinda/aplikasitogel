@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:userViewModels="clr-namespace:AplikasiTog.ViewModels.Users"
-                    xmlns:userViews="clr-namespace:AplikasiTog.Views.Users"
+                    xmlns:userViewModels="clr-namespace:Apel.ViewModels.Users"
+                    xmlns:userViews="clr-namespace:Apel.Views.Users"
                     >
     <DataTemplate DataType="{x:Type userViewModels:UserSearchViewModel}">
         <userViews:UserSearch/>

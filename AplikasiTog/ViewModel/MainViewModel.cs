@@ -1,5 +1,5 @@
 
-namespace AplikasiTog.ViewModel
+namespace Apel.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

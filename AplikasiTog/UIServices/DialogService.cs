@@ -5,7 +5,7 @@ using GenericCodes.CRUD.WPF.Views.CRUD;
 using System;
 using System.Windows;
 
-namespace AplikasiTog.UIServices
+namespace Apel.UIServices
 {
     public class DialogService : IDialogService
     {

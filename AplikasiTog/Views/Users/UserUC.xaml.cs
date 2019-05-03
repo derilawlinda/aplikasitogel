@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Windows.Controls;
 
-namespace AplikasiTog.Views.Users
+namespace Apel.Views.Users
 {
     /// <summary>
     /// Interaction logic for UserUC.xaml

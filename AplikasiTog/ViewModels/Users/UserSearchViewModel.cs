@@ -1,8 +1,8 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using Apel.DAL.Models;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using System;
 
-namespace AplikasiTog.ViewModels.Users
+namespace Apel.ViewModels.Users
 {
     public class UserSearchViewModel : SearchCriteriaBase<User>
     {

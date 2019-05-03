@@ -1,21 +1,21 @@
-﻿using AplikasiTog.DAL;
-using AplikasiTog.DAL.Models;
+﻿using Apel.DAL;
+using Apel.DAL.Models;
 using GenericCodes.CRUD.WPF.Core.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using AplikasiTog.Services.Interfaces;
+using Apel.Services.Interfaces;
 using System.Text;
 using System.Threading.Tasks;
-using AplikasiTog.Services;
+using Apel.Services;
 using GenericCodes.Core.Repositories;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
-using AplikasiTog.UIServices;
+using Apel.UIServices;
 using System.Data.Entity.Validation;
 
-namespace AplikasiTog.ViewModels.Transactions
+namespace Apel.ViewModels.Transactions
 {
     public class TransactionUserAutocompleteViewModel : GenericCrudBase<Transaction>, INotifyPropertyChanged
     {
@@ -99,6 +99,26 @@ namespace AplikasiTog.ViewModels.Transactions
                                         dialog.ShowErrorDialog("Error", "Ceklis salah satu set");
                                         return;
 
+                                    }
+                                    else
+                                    {
+                                        if(BB2AIsChecked && BB2ABetAmout.Equals(0))
+                                        {
+                                            dialog.ShowErrorDialog("Error", "Nilai taruhan BB2A tidak bisa 0");
+                                            return;
+                                        }
+
+                                        if (BB3AIsChecked && BB3ABetAmout.Equals(0))
+                                        {
+                                            dialog.ShowErrorDialog("Error", "Nilai taruhan BB3A tidak bisa 0");
+                                            return;
+                                        }
+
+                                        if (BB4AIsChecked && BB4ABetAmount.Equals(0))
+                                        {
+                                            dialog.ShowErrorDialog("Error", "Nilai taruhan BB4A tidak bisa 0");
+                                            return;
+                                        }
                                     }
                                     if(combination.ToString().Length >= 2)
                                     {

@@ -6,26 +6,28 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using AplikasiTog.DAL;
-using AplikasiTog.DAL.Models;
-using AplikasiTog.Services.Interfaces;
-using AplikasiTog.ViewModels.Users;
+using Apel.DAL;
+using Apel.DAL.Models;
+using Apel.Services.Interfaces;
+using Apel.ViewModels.Users;
 using GenericCodes.CRUD.WPF.Core.MVVM;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
-using AplikasiTog.Helpers;
+using Apel.Helpers;
 
-namespace AplikasiTog.ViewModels.Transactions
+namespace Apel.ViewModels.Transactions
 {
     public class TransactionViewModel : GenericCrudBase<Transaction>, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly ITransactionsInterface _transactionService;
+        private readonly ISettingsInterface _settingService;
         public TransactionViewModel(TransactionSearchViewModel transactionSearch, ITransactionsInterface transactionService,
-                                  TransactionAddEditViewModel transactionAddEditViewModel)
+                                  TransactionAddEditViewModel transactionAddEditViewModel, ISettingsInterface settingService)
             : base(transactionSearch, transactionAddEditViewModel)
         {
             _transactionService = transactionService;
+            _settingService = settingService;
 
             PostDataRetrievalDelegate = (list) =>
             {
@@ -71,6 +73,15 @@ namespace AplikasiTog.ViewModels.Transactions
             get
             {
                 return String.Format("Transaksi hari {0} , {1} {2} {3}.",Helpers.Helpers.hariHelpers(Convert.ToInt16(DateTime.Now.DayOfWeek)), DateTime.Now.Day, Helpers.Helpers.bulanHelpers(Convert.ToInt16(DateTime.Now.Month)), DateTime.Now.Year);
+            }
+        }
+
+        public double BettingThreshold
+        {
+            get
+            {
+                var asd = Convert.ToDouble(_settingService.GetSettingKeyValuePairs()["BettingThreshold"]);
+                return Convert.ToDouble(_settingService.GetSettingKeyValuePairs()["BettingThreshold"]);
             }
         }
 

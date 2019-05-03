@@ -1,8 +1,8 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using Apel.DAL.Models;
 using GenericCodes.Core.DbContext;
 using System.Data.Entity;
 
-namespace AplikasiTog.DAL
+namespace Apel.DAL
 {
     public partial class TogelContext : ApplicationDbContext
     {

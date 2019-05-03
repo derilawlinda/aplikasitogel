@@ -1,10 +1,10 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using Apel.DAL.Models;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
-using AplikasiTog.Services.Interfaces;
-using AplikasiTog.DAL;
+using Apel.Services.Interfaces;
+using Apel.DAL;
 using System.Linq;
 
-namespace AplikasiTog.ViewModels.Users
+namespace Apel.ViewModels.Users
 {
     public class UserViewModel : GenericCrudBase<User>
     {

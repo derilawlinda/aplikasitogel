@@ -10,9 +10,9 @@ using Syncfusion.UI.Xaml.Grid.Converter;
 using Syncfusion.XlsIO;
 using System.Windows;
 using Microsoft.Win32;
-using AplikasiTog.Helpers;
+using Apel.Helpers;
 
-namespace AplikasiTog
+namespace Apel
 {
     public static class Commands
     {

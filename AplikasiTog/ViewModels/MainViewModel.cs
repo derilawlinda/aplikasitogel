@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AplikasiTog.Services.Interfaces;
+using Apel.Services.Interfaces;
 
 
-namespace AplikasiTog.ViewModels
+namespace Apel.ViewModels
 {
     public class MainViewModel
     {

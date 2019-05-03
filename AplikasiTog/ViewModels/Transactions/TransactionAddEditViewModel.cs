@@ -1,9 +1,9 @@
-﻿using AplikasiTog.DAL.Models;
-using AplikasiTog.Services.Interfaces;
+﻿using Apel.DAL.Models;
+using Apel.Services.Interfaces;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using System.ComponentModel;
 
-namespace AplikasiTog.ViewModels.Transactions
+namespace Apel.ViewModels.Transactions
 {
     public class TransactionAddEditViewModel : AddEditEntityBase<Transaction>
     {

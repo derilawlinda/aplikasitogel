@@ -1,6 +1,6 @@
-﻿using AplikasiTog.DAL.Models;
-using AplikasiTog.Services.Interfaces;
-using AplikasiTog.UIServices;
+﻿using Apel.DAL.Models;
+using Apel.Services.Interfaces;
+using Apel.UIServices;
 using GenericCodes.CRUD.WPF.Core.MVVM;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using System;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace AplikasiTog.ViewModels.Nomors
+namespace Apel.ViewModels.Nomors
 {
     public class NomorViewModel : GenericCrudBase<Nomor>, INotifyPropertyChanged
     {

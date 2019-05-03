@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AplikasiTog.Views.Transactions
+namespace Apel.Views.Transactions
 {
     /// <summary>
     /// Interaction logic for NoTransactionUC.xaml

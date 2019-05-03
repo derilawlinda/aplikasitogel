@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 
-namespace AplikasiTog.Views.Transactions
+namespace Apel.Views.Transactions
 {
     /// <summary>
     /// Interaction logic for TransactionsUC.xaml

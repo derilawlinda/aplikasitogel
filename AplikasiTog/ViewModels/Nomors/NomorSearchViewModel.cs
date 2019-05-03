@@ -1,4 +1,4 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using Apel.DAL.Models;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AplikasiTog.ViewModels.Nomors
+namespace Apel.ViewModels.Nomors
 {
     public class NomorSearchViewModel : SearchCriteriaBase<Nomor>
     {

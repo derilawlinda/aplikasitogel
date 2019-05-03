@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AplikasiTog.Views.Settings
+namespace Apel.Views.Settings
 {
     /// <summary>
     /// Interaction logic for SettingUC.xaml

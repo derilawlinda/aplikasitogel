@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="AplikasiTog.Views.TransactionReports.TransactionReportByUserUC"
+﻿<UserControl x:Class="Apel.Views.TransactionReports.TransactionReportByUserUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                             xmlns:local="clr-namespace:AplikasiTog.Views.TransactionReports"
-                             xmlns:helper="clr-namespace:AplikasiTog"
+                             xmlns:local="clr-namespace:Apel.Views.TransactionReports"
+                             xmlns:helper="clr-namespace:Apel"
                              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
                              mc:Ignorable="d" d:DesignWidth="800" Height="400"
                              syncfusion:LayoutControl.SetMetroMode="True"
@@ -73,7 +73,10 @@
                                         <syncfusion:GridTextColumn HeaderText="Nomor" MappingName="BetNumber" />
                                         <syncfusion:GridCurrencyColumn HeaderText="Taruhan" MappingName="BetAmount" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=","/>
                                         <syncfusion:GridTextColumn HeaderText="Discount" MappingName="Discount" />
-                                        <syncfusion:GridCurrencyColumn HeaderText="Winning/Losing" MappingName="Winning" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator="," />                                        
+                                        <syncfusion:GridCurrencyColumn HeaderText="Winning/Losing" MappingName="Winning" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator="," />
+
+
+
                                     </syncfusion:SfDataGrid.Columns>
                                 </syncfusion:SfDataGrid>
                             </syncfusion:GridViewDefinition.DataGrid>

@@ -1,11 +1,11 @@
-﻿using AplikasiTog.DAL;
-using AplikasiTog.DAL.Models;
+﻿using Apel.DAL;
+using Apel.DAL.Models;
 using System.Linq;
 using GenericCodes.CRUD.WPF.ViewModel.CRUDBases;
 using System;
 using System.ComponentModel;
 
-namespace AplikasiTog.ViewModels.Users
+namespace Apel.ViewModels.Users
 {
     public class UserAddEditViewModel : AddEditEntityBase<User>
     {

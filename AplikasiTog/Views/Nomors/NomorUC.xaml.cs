@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AplikasiTog.Views.Nomors
+namespace Apel.Views.Nomors
 {
     /// <summary>
     /// Interaction logic for NomorUC.xaml

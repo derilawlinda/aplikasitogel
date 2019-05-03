@@ -1,8 +1,8 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using Apel.DAL.Models;
 using GenericCodes.Core.Services;
 using System.Collections.Generic;
 
-namespace AplikasiTog.Services.Interfaces
+namespace Apel.Services.Interfaces
 {
     public interface INomorsInterface : IService<Nomor>
     {

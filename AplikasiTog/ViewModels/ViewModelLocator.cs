@@ -1,23 +1,23 @@
-﻿using AplikasiTog.DAL.Models;
+﻿using Apel.DAL.Models;
 using GenericCodes.Core.DbContext;
 using GenericCodes.Core.Repositories;
 using GenericCodes.Core.UnitOfWork;
 using GenericCodes.CRUD.WPF.UIServices;
 using System.Data.Entity;
-using AplikasiTog.DAL;
-using AplikasiTog.Services.Interfaces;
-using AplikasiTog.ViewModels.Users;
-using AplikasiTog.ViewModels.Transactions;
-using AplikasiTog.ViewModels.Nomors;
-using AplikasiTog.Services;
+using Apel.DAL;
+using Apel.Services.Interfaces;
+using Apel.ViewModels.Users;
+using Apel.ViewModels.Transactions;
+using Apel.ViewModels.Nomors;
+using Apel.Services;
 using Microsoft.Practices.ServiceLocation;
 using Unity;
 using System;
 using System.Collections.Generic;
 using Unity.Lifetime;
-using AplikasiTog.ViewModels.Settings;
+using Apel.ViewModels.Settings;
 
-namespace AplikasiTog.ViewModels
+namespace Apel.ViewModels
 {
     public class ViewModelLocator
     {

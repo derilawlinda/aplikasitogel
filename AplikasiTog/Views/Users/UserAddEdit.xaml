@@ -1,29 +1,38 @@
-﻿<UserControl x:Class="AplikasiTog.Views.Users.UserAddEdit"
+﻿<UserControl x:Class="Apel.Views.Users.UserAddEdit"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AplikasiTog.Views.Users"
+             xmlns:local="clr-namespace:Apel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
+             xmlns:ie="http://schemas.microsoft.com/expression/2010/interactions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">
-            <Setter Property="Validation.ErrorTemplate">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <DockPanel LastChildFill="true">
-                            <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+
+        <local:NullConverter x:Key="nullconvertor"></local:NullConverter>
+
+        <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">           
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Validation.Errors,Converter={StaticResource nullconvertor}}" Value="{x:Null}" >
+                    <Setter Property="Validation.ErrorTemplate">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <DockPanel LastChildFill="true">
+                                    <Border Background="Green" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
                             ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
-                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
-                                </TextBlock>
-                            </Border>
-                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
-                                <Border BorderBrush="red" BorderThickness="1" />
-                            </AdornedElementPlaceholder>
-                        </DockPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+                                        <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                                        </TextBlock>
+                                    </Border>
+                                    <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                        <Border BorderBrush="Green" BorderThickness="1" />
+                                    </AdornedElementPlaceholder>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>            
         </Style>
     </UserControl.Resources>
     <Grid>

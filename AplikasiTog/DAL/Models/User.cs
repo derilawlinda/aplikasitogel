@@ -1,11 +1,11 @@
 ﻿using GenericCodes.Core.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using AplikasiTog.DAL;
+using Apel.DAL;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace AplikasiTog.DAL.Models
+namespace Apel.DAL.Models
 {
     public class User : Entity
     {

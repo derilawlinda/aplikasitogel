@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AplikasiTog.Views.Winnings
+namespace Apel.Views.Winnings
 {
     /// <summary>
     /// Interaction logic for WinningList.xaml

@@ -11,7 +11,7 @@ using Syncfusion.XlsIO;
 using System.Windows;
 using Microsoft.Win32;
 
-namespace AplikasiTog
+namespace Apel
 {
     public static class ExportSelectedCommand
     {
