@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Apel.Views.Users"
              mc:Ignorable="d" 
+             Background="AliceBlue"
              d:DesignHeight="300" d:DesignWidth="700">
     <Grid>
         <Grid.ColumnDefinitions>

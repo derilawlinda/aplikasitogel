@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Apel.Views.Nomors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             Background="AliceBlue"
              DataContext="{Binding Nomors,Source={StaticResource Locator}}">
     <UserControl.Resources>
         <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">

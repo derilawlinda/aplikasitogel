@@ -6,7 +6,7 @@
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              xmlns:local="clr-namespace:Apel.Views.Transactions"
              xmlns:dotNetKitControls="clr-namespace:DotNetKit.Windows.Controls;assembly=DotNetKit.Wpf.AutoCompleteComboBox"
-       
+             Background="AliceBlue"
              mc:Ignorable="d" d:DesignWidth="800" Height="600"
              DataContext="{Binding TransactionUserAutocompletes,Source={StaticResource Locator}}"
              >

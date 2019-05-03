@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Apel.Views.Settings"
              mc:Ignorable="d"
+             Background="AliceBlue"
              DataContext="{Binding Settings,Source={StaticResource Locator}}"
              d:DesignWidth="800" Height="600">
     

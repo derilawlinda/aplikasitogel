@@ -8,6 +8,7 @@
                              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
                              mc:Ignorable="d" d:DesignWidth="800" Height="400"
                              syncfusion:LayoutControl.SetMetroMode="True"
+                             Background="AliceBlue"
                             >
     <UserControl.Resources>
         <helper:EccelOptionsConverter x:Key="excelOptionsConverter" />

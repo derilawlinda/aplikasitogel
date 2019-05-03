@@ -7,6 +7,7 @@
              xmlns:crud="https://genericcodes.com/crud"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1000"
+             Background="AliceBlue"
              DataContext="{Binding Users,Source={StaticResource Locator}}"
 >
     <UserControl.Resources>
