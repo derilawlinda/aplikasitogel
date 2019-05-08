@@ -13,5 +13,7 @@ namespace Apel.DAL.Models
         
         public double BetAmount { get; set; }
         public double Discount { get; set; }
+
+        public double WinningMultiplier { get; set; }
     }
 }

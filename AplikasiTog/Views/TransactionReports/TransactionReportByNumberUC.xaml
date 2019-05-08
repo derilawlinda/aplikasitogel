@@ -11,6 +11,7 @@
                             >
     <UserControl.Resources>
         <helper:EccelOptionsConverter x:Key="excelOptionsConverter" />
+        <helper:RangeConverter x:Key="RangeConverter" />
     </UserControl.Resources>
     <Grid DataContext="{Binding Transactions,Source={StaticResource Locator}}" >
         <Grid.ColumnDefinitions>
@@ -70,10 +71,24 @@
                                         AutoGenerateColumns="False"
                                         NavigationMode="Cell">
                                     <syncfusion:SfDataGrid.Columns>
-                                        <syncfusion:GridTextColumn HeaderText="Nomor" MappingName="BetNumber" />
-                                        <syncfusion:GridCurrencyColumn HeaderText="Taruhan" MappingName="BetAmount" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=","/>
-                                        <syncfusion:GridTextColumn HeaderText="Discount" MappingName="Discount" />
-                                        <syncfusion:GridCurrencyColumn HeaderText="Winning/Losing" MappingName="Winning" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator="," />
+                                        <syncfusion:GridTextColumn HeaderText="Nomor" MappingName="BetNumber" Width="80"/>
+                                        <syncfusion:GridCurrencyColumn HeaderText="Taruhan" Width="150" MappingName="BetAmount" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=","/>
+                                        <syncfusion:GridNumericColumn HeaderText="Discount" Width="100" MappingName="Discount" />
+                                        <syncfusion:GridNumericColumn HeaderText="Multiplier" Width="100" MappingName="WinningMultiplier" />
+                                        <syncfusion:GridCurrencyColumn HeaderText="Winning/Losing" Width="150" MappingName="Winning" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=","  >
+                                            <syncfusion:GridCurrencyColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock x:Name="text"
+                                                                HorizontalAlignment="Right"
+                                                                Foreground="{Binding Winning,
+                                                                    Converter={StaticResource RangeConverter}}"
+                                                                Text="{Binding Winning,
+                                                                                StringFormat={}Rp {0:n}}" />  
+
+                                                </DataTemplate>
+                                            </syncfusion:GridCurrencyColumn.CellTemplate>
+
+                                        </syncfusion:GridCurrencyColumn>
 
 
 
@@ -85,7 +100,21 @@
 
                     <syncfusion:SfDataGrid.Columns>
                         <syncfusion:GridTextColumn HeaderText="User" MappingName="UserName" />
-                        <syncfusion:GridCurrencyColumn HeaderText="Jumlah Taruhan" MappingName="TotalWinning" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=","/>
+                        <syncfusion:GridCurrencyColumn HeaderText="Jumlah Taruhan" MappingName="TotalWinning" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=",">
+                            <syncfusion:GridCurrencyColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock x:Name="text"
+                                                                HorizontalAlignment="Right"
+                                                                Foreground="{Binding TotalWinning,
+                                                                    Converter={StaticResource RangeConverter}}"
+                                                                Text="{Binding TotalWinning,
+                                                                                StringFormat={}Rp {0:n}}" 
+                                                                />
+
+                                </DataTemplate>
+                            </syncfusion:GridCurrencyColumn.CellTemplate>
+
+                        </syncfusion:GridCurrencyColumn>
 
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>

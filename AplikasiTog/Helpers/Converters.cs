@@ -61,4 +61,21 @@ namespace Apel
             return null;
         }
     }
+
+    class RangeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var range = value as double?;
+            if (range < 0.0)
+                return new SolidColorBrush(Colors.Red);
+            else
+                return new SolidColorBrush(Colors.Green);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return true;
+        }
+    }
 }

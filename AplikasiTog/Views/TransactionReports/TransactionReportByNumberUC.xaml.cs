@@ -24,5 +24,6 @@ namespace Apel.Views.TransactionReports
         {
             InitializeComponent();
         }
+
     }
 }

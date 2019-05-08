@@ -138,45 +138,62 @@ namespace Apel.Services
                 var winningNomor3Angka = Convert.ToInt32(todayWinningNomor.ToString().Substring(1, 3));
                 var winningNomor4Angka = Convert.ToInt32(todayWinningNomor);
 
-                var winningMultiplier2Angka = Convert.ToInt32(_settingService.GetSettingKeyValuePairs()["Winning2Nomor"]);
-                var winningMultiplier3Angka = Convert.ToInt32(_settingService.GetSettingKeyValuePairs()["Winning3Nomor"]);
-                var winningMultiplier4Angka = Convert.ToInt32(_settingService.GetSettingKeyValuePairs()["Winning4Nomor"]);
-
                 var userIds = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
-                t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day).Select(t => t.UserID).Distinct();
+                t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day).Select(t => t.UserID).Distinct().ToArray();
 
-                Winning todayWinningAggregator = new Winning();
+                
                 foreach (var userId in userIds)
                 {
+                    Winning todayWinningAggregator = new Winning();
                     List<Transaction> todayTransactionByUsers = togelContext.Transactions.ToList().Where(t => t.Date.Date == DateTime.Today.Date && t.UserID == userId).ToList();
-                    User user = todayTransactionByUsers.First().User;
+                    User user = togelContext.Users.Find(userId);
                     todayWinningAggregator.UserName = user.Name;
-                    var discount = user.Discount;
                     List<WinningDetail> winningDetails = new List<WinningDetail>();
                     foreach (var ttbu in todayTransactionByUsers)
                     {
                         WinningDetail winningDetail = new WinningDetail();
                         winningDetail.BetNumber = ttbu.BetNumber;
-                        winningDetail.Winning = ttbu.BetAmount * (0.01 * discount);
-                        winningDetail.Discount = discount;
+                        winningDetail.WinningMultiplier = 0;
                         winningDetail.BetAmount = ttbu.BetAmount;
-                        if (ttbu.BetNumber == winningNomor2Angka)
+                        if(ttbu.BetNumber.ToString().Length == 2)
                         {
-                            winningDetail.Winning = ttbu.BetAmount * winningMultiplier2Angka;
-                            winningDetail.Discount = 0;
-                        };
+                            winningDetail.Discount = user.Discount2A;
+                            winningDetail.Winning = (ttbu.BetAmount * ((100 - user.Discount2A) * 0.01)) * -1;
+                            
 
-                        if (ttbu.BetNumber == winningNomor3Angka)
-                        {
-                            winningDetail.Winning = ttbu.BetAmount * winningMultiplier3Angka;
-                            winningDetail.Discount = 0;
-                        };
+                            if (ttbu.BetNumber == winningNomor2Angka)
+                            {
+                                winningDetail.Winning = ttbu.BetAmount * user.Winning2A;
+                                winningDetail.WinningMultiplier = user.Winning2A;
+                                winningDetail.Discount = 0;
+                            };
+                        }
 
-                        if (ttbu.BetNumber == winningNomor4Angka)
+                        if (ttbu.BetNumber.ToString().Length == 3)
                         {
-                            winningDetail.Winning = ttbu.BetAmount * winningMultiplier4Angka;
-                            winningDetail.Discount = 0;
-                        };
+                            winningDetail.Discount = user.Discount3A;
+                            winningDetail.Winning = (ttbu.BetAmount * ((100 - user.Discount3A) * 0.01)) * -1;
+
+                            if (ttbu.BetNumber == winningNomor3Angka)
+                            {
+                                winningDetail.Winning = ttbu.BetAmount * user.Winning3A;
+                                winningDetail.WinningMultiplier = user.Winning3A;
+                                winningDetail.Discount = 0;
+                            };
+                        }
+
+                        if (ttbu.BetNumber.ToString().Length == 4)
+                        {
+                            winningDetail.Discount = user.Discount4A;
+                            winningDetail.Winning = (ttbu.BetAmount * ( (100 - user.Discount4A) * 0.01 )) * -1;
+
+                            if (ttbu.BetNumber == winningNomor4Angka)
+                            {
+                                winningDetail.Winning = ttbu.BetAmount * user.Winning3A;
+                                winningDetail.WinningMultiplier = user.Winning4A;
+                                winningDetail.Discount = 0;
+                            };
+                        }                        
 
                         winningDetails.Add(winningDetail);
                     }

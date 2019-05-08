@@ -197,11 +197,22 @@
                           PagerPageSizeComboBoxStyle="{StaticResource PagerPageSizeComboBoxStyle}">
                         <crud:GenericCrudControl.SortingProperties>
                             <crud:SortingProperty DisplayName="Name" PropertyPath="Name"/>
-                            <crud:SortingProperty DisplayName="Discount" PropertyPath="Discount"/>
+                            <crud:SortingProperty DisplayName="Discount2A" PropertyPath="Discount2A"/>
+                            <crud:SortingProperty DisplayName="Discount3A" PropertyPath="Discount3A"/>
+                            <crud:SortingProperty DisplayName="Discount4A" PropertyPath="Discount4A"/>
+                            <crud:SortingProperty DisplayName="Winning2A" PropertyPath="Winning2A"/>
+                            <crud:SortingProperty DisplayName="Winning3A" PropertyPath="Winning3A"/>
+                            <crud:SortingProperty DisplayName="Winning4A" PropertyPath="Winning4A"/>
+
                         </crud:GenericCrudControl.SortingProperties>
                         <crud:GenericCrudControl.Columns>
                             <crud:CustomDataGridColumn Header="Name" BindingExpression="Name" Width="*"/>
-                            <crud:CustomDataGridColumn Header="Discount" BindingExpression="Discount" Width="*"/>
+                            <crud:CustomDataGridColumn Header="Discount2A" BindingExpression="Discount2A" Width="*"/>
+                            <crud:CustomDataGridColumn Header="Discount3A" BindingExpression="Discount3A" Width="*"/>
+                            <crud:CustomDataGridColumn Header="Discount4A" BindingExpression="Discount4A" Width="*"/>
+                            <crud:CustomDataGridColumn Header="Winning2A" BindingExpression="Winning2A" Width="*"/>
+                            <crud:CustomDataGridColumn Header="Winning3A" BindingExpression="Winning3A" Width="*"/>
+                            <crud:CustomDataGridColumn Header="Winning4A" BindingExpression="Winning4A" Width="*"/>                            
                         </crud:GenericCrudControl.Columns>
                     </crud:GenericCrudControl>
                 </StackPanel>

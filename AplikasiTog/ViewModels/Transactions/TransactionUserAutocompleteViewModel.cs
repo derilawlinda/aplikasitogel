@@ -167,11 +167,11 @@ namespace Apel.ViewModels.Transactions
                                     int BetsLength4 = transactionList.Where(t => t.BetNumber.ToString().Length == 4).Count();
                                     bool dialogResponse = dialog.ShowConfirmDialog("Info", 
                                         String.Format("Jumlah yang harus dibayarkan oleh {0} : ", SelectedItem.Name) + Environment.NewLine +
-                                        String.Format("2 Angka : {0} nomor x {1} = {2} ", BetsLength2, BB2ABetAmout, (BetsLength2 * BB2ABetAmout)) + Environment.NewLine +
-                                        String.Format("3 Angka : {0} nomor x {1} = {2} ", BetsLength3, BB3ABetAmout, (BetsLength3 * BB3ABetAmout)) + Environment.NewLine +
-                                        String.Format("4 Angka : {0} nomor x {1} = {2} ", BetsLength4, BB4ABetAmount, (BetsLength4 * BB4ABetAmount)) + Environment.NewLine +
-                                        String.Format("Total : {0} ", (BetsLength2 * BB2ABetAmout)+ (BetsLength3 * BB3ABetAmout) + (BetsLength4 * BB4ABetAmount))
-                                        );
+                                        String.Format("2 Angka : {0} nomor x Rp. {1} = Rp. {2} ", BetsLength2,  BB2ABetAmout.ToString("##,#"), (BetsLength2 * BB2ABetAmout).ToString("##,#")) + Environment.NewLine +
+                                        String.Format("3 Angka : {0} nomor x Rp. {1} = Rp. {2} ", BetsLength3, BB3ABetAmout.ToString("##,#"), (BetsLength3 * BB3ABetAmout).ToString("##,#")) + Environment.NewLine +
+                                        String.Format("4 Angka : {0} nomor x Rp. {1} = Rp. {2} ", BetsLength4, BB4ABetAmount.ToString("##,#"), (BetsLength4 * BB4ABetAmount).ToString("##,#")) + Environment.NewLine +
+                                        String.Format("Total : Rp. {0} ", ((BetsLength2 * BB2ABetAmout)+ (BetsLength3 * BB3ABetAmout) + (BetsLength4 * BB4ABetAmount)).ToString("##,#")
+                                        ));
 
                                     if (dialogResponse)
                                     {

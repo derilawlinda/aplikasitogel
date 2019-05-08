@@ -7,42 +7,47 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
              xmlns:ie="http://schemas.microsoft.com/expression/2010/interactions"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" VerticalAlignment="Top" HorizontalAlignment="Left">
     <UserControl.Resources>
 
         <local:NullConverter x:Key="nullconvertor"></local:NullConverter>
 
-        <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">           
+        <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Validation.Errors,Converter={StaticResource nullconvertor}}" Value="{x:Null}" >
                     <Setter Property="Validation.ErrorTemplate">
                         <Setter.Value>
                             <ControlTemplate>
                                 <DockPanel LastChildFill="true">
-                                    <Border Background="Green" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                                    <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
                             ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
                                         <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
                                         </TextBlock>
                                     </Border>
                                     <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
-                                        <Border BorderBrush="Green" BorderThickness="1" />
+                                        <Border BorderBrush="Red" BorderThickness="1" />
                                     </AdornedElementPlaceholder>
                                 </DockPanel>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
-            </Style.Triggers>            
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
@@ -57,6 +62,7 @@
                            Text="Nama" Height="16"/>
         <TextBox Grid.Row="0" 
                  Grid.Column="1"
+                 Grid.ColumnSpan="2"
                  VerticalAlignment="Center"
                  Margin="0.333,3,0,5"
                  Width="300"
@@ -71,25 +77,149 @@
 
         <TextBlock Grid.Row="1"
 
+                           Grid.Column="1"
+
+                           VerticalAlignment="Center"
+
+                           Margin="5,4,15.667,6"
+
+                           Text="Winning" Height="16"/>
+
+        <TextBlock Grid.Row="1"
+
+                           Grid.Column="2"
+
+                           VerticalAlignment="Center"
+
+                           Margin="5,4,15.667,6"
+
+                           Text="Discount" Height="16"/>
+        <TextBlock Grid.Row="2"
+
                            Grid.Column="0"
 
                            VerticalAlignment="Center"
 
-                           Margin="5,3,15.667,7"
+                           Margin="5,4,15.667,6"
 
-                           Text="Discount" Height="16"/>
-        <TextBox  Grid.Row="1"
+                           Text="2 Angka" Height="16"/>
+        <TextBlock Grid.Row="3"
+
+                           Grid.Column="0"
+
+                           VerticalAlignment="Center"
+
+                           Margin="5,4,15.667,6"
+
+                           Text="3 Angka" Height="16"/>
+
+        <TextBlock Grid.Row="4"
+
+                           Grid.Column="0"
+
+                           VerticalAlignment="Center"
+
+                           Margin="5,4,15.667,6"
+
+                           Text="4 Angka" Height="16"/>
+
+        <TextBox  Grid.Row="2"
 
                            Grid.Column="1"
 
                            VerticalAlignment="Center"
 
-                           Margin="0.333,2,0,6"
                   
-                           Width="300"
+                           Width="91"
                            HorizontalAlignment="Left"
 
-                           Text="{Binding Entity.Discount}" Height="18"/>
+                           Text="{Binding Entity.Winning2A}" Height="18" Margin="5,0,0,0"/>
+        <DockPanel LastChildFill="true" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+            <TextBlock DockPanel.Dock="Right" Text="X"  Margin="100,0,0,0.333" Width="54" HorizontalAlignment="Left"></TextBlock>
+        </DockPanel>
+
+        <DockPanel LastChildFill="true" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+            <TextBlock DockPanel.Dock="Right" Text="X"  Margin="100,0,0,0.333" Width="54" HorizontalAlignment="Left"></TextBlock>
+        </DockPanel>
+
+        <DockPanel LastChildFill="true" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+            <TextBlock DockPanel.Dock="Right" Text="X"  Margin="100,0,0,0.333" Width="54" HorizontalAlignment="Left"/>
+        </DockPanel>
+
+        <DockPanel LastChildFill="true" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
+            <TextBlock DockPanel.Dock="Right" Text="%"  Margin="100,0,0,0.333" Width="54" HorizontalAlignment="Left"/>
+        </DockPanel>
+
+        <DockPanel LastChildFill="true" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
+            <TextBlock DockPanel.Dock="Right" Text="%"  Margin="100,0,0,0.333" Width="54" HorizontalAlignment="Left"/>
+        </DockPanel>
+
+        <DockPanel LastChildFill="true" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
+            <TextBlock DockPanel.Dock="Right" Text="%"  Margin="100,0,0,0.333" Width="54" HorizontalAlignment="Left"/>
+        </DockPanel>
+
+
+        <TextBox  Grid.Row="3"
+
+                           Grid.Column="1"
+
+                           VerticalAlignment="Center"
+
+                  
+                           Width="91"
+                           HorizontalAlignment="Left"
+
+                           Text="{Binding Entity.Winning3A}" Height="18" Margin="5,0,0,0"/>
+
+        <TextBox  Grid.Row="4"
+
+                           Grid.Column="1"
+
+                           VerticalAlignment="Center"
+
+                  
+                           Width="91"
+                           HorizontalAlignment="Left"
+
+                           Text="{Binding Entity.Winning4A}" Height="18" Margin="5,0,0,0"/>
+
+        <TextBox  Grid.Row="2"
+
+                           Grid.Column="2"
+
+                           VerticalAlignment="Center"
+
+                  
+                           Width="91"
+                           HorizontalAlignment="Left"
+
+                           Text="{Binding Entity.Discount2A}" Height="18" Margin="5,0,0,0"/>
+
+        <TextBox  Grid.Row="3"
+
+                           Grid.Column="2"
+
+                           VerticalAlignment="Center"
+
+                  
+                           Width="91"
+                           HorizontalAlignment="Left"
+
+                           Text="{Binding Entity.Discount3A}" Height="18" Margin="5,0,0,0"/>
+
+        <TextBox  Grid.Row="4"
+
+                           Grid.Column="2"
+
+                           VerticalAlignment="Center"
+
+                  
+                           Width="91"
+                           HorizontalAlignment="Left"
+
+                           Text="{Binding Entity.Discount4A}" Height="18" Margin="5,0,0,0"/>
+
+
 
     </Grid>
 </UserControl>

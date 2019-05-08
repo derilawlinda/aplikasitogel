@@ -15,62 +15,15 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Height="26" Width="54" >Winning</Label>
-            <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Height="26" Width="54" >Batas</Label>
-            <Button Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Content="Save" Grid.Column="1" Height="30" Command="{Binding SaveSettingCommand}" Margin="0,10.333,10,-9"/>
+            <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Height="26" Width="54" >Batas</Label>
+            <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Content="Save" Grid.Column="1" Height="30" Command="{Binding SaveSettingCommand}" Margin="0,10.333,10,-9"/>
 
-            <Grid Grid.Column="1" Grid.Row="0" Margin="0,10,0,10.333" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"  />
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">2 Nomor</Label>
-                <TextBox x:Name="Winning2NomorTextBox" Grid.Row="0" Height="20" Width="57" HorizontalAlignment="Left" Grid.Column ="1" Text="{Binding Setting2NomorWinning, Mode=TwoWay}" Margin="4.667,6,0,5.333"  />
-                <TextBlock Grid.Row="0" Margin="53.667,10,471,3.333" RenderTransformOrigin="0.5,0.5" Grid.Column="1" >
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="0.255"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0.996"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>x</TextBlock>
-                <Label Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" >3 Nomor</Label>
-                <TextBox x:Name="Winning3NomorTextBox" Grid.Row="1" Height="20" Width="57" HorizontalAlignment="Left" Grid.Column ="1" Text="{Binding Setting3NomorWinning, Mode=TwoWay}" Margin="4.667,5.667,0,4.333"  />
-                <TextBlock Grid.Row="1" Margin="53.667,11.667,471,1.667" RenderTransformOrigin="0.5,0.5" Grid.Column="1" >
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="0.255"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0.996"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>x</TextBlock>
-                <Label Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">4 Nomor</Label>
-                <TextBox x:Name="Winning4NomorTextBox" Grid.Row="2" Height="20" Width="57" HorizontalAlignment="Left" Grid.Column ="1" Text="{Binding Setting4NomorWinning, Mode=TwoWay}" Margin="4.667,5.667,0,4.333"  />
-                <TextBlock Grid.Row="2" Margin="53.667,11.333,471,2" RenderTransformOrigin="0.5,0.5" Grid.Column="1" >
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="0.255"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0.996"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>x</TextBlock>
-
-
-            </Grid>
-            <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" >
+           
+            <Grid Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" >
                 <Label Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">Batas Taruhan Rp.</Label>
             <TextBox x:Name="BettingThreshold" Width="131" HorizontalAlignment="Left" Text="{Binding BettingThreshold, Mode=TwoWay,StringFormat='{}{0:N}',UpdateSourceTrigger=PropertyChanged}" Margin="136,0,0,4" Height="22" VerticalAlignment="Bottom"  />
 
