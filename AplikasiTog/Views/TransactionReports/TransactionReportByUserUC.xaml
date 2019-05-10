@@ -90,7 +90,7 @@
                                         <ProgressBar x:Name="progressBar"
                                                  BorderThickness="0"
                                                  FlowDirection="LeftToRight"
-                                                 Maximum="{Binding Transactions.BettingThreshold,Source={StaticResource Locator}}"
+                                                 Maximum="{Binding BettingThreshold}"
                                                  Minimum="0"
                                                  Background="Transparent"
                                                  Visibility="Visible"
@@ -104,7 +104,7 @@
                             </syncfusion:GridCurrencyColumn.CellTemplate>
 
                         </syncfusion:GridCurrencyColumn>
-
+                        <syncfusion:GridCurrencyColumn HeaderText="Batas Taruhan" MappingName="BettingThreshold" CurrencyGroupSeparator="." CurrencyGroupSizes="3" CurrencyDecimalDigits="2" CurrencyDecimalSeparator=","  />
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>
                 

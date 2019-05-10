@@ -55,41 +55,28 @@ namespace Apel.Services
             return SettingDict;
         }
 
-        public void UpdateSettings(string winning2Nomor, string winning3Nomor, string winning4Nomor, string bettingThreshold)
+        public void UpdateSettings(string bettingThreshold2A, string bettingThreshold3A, string bettingThreshold4A)
         {
-            string Winning2NomorValue = togelContext.Settings.Find(1).SettingValue;
-            string Winning3NomorValue = togelContext.Settings.Find(2).SettingValue;
-            string Winning4NomorValue = togelContext.Settings.Find(3).SettingValue;
-            string BettingThreshold = togelContext.Settings.Find(4).SettingValue;
+            string BettingThreshold2A = togelContext.Settings.Find(1).SettingValue;
+            string BettingThreshold3A = togelContext.Settings.Find(2).SettingValue;
+            string BettingThreshold4A = togelContext.Settings.Find(3).SettingValue;
 
-            if (Winning2NomorValue != winning2Nomor)
+            if (BettingThreshold2A != bettingThreshold2A)
             {
-                Setting winning = togelContext.Settings.Find(1);
-                winning.SettingValue = winning2Nomor;
+                Setting setting = togelContext.Settings.Find(1);
+                setting.SettingValue = bettingThreshold2A;
             }
 
-            if (Winning3NomorValue != winning3Nomor)
+            if (BettingThreshold3A != bettingThreshold3A)
             {
-                Setting winning = togelContext.Settings.Find(2);
-                winning.SettingValue = winning3Nomor;
+                Setting setting = togelContext.Settings.Find(2);
+                setting.SettingValue = bettingThreshold3A;
             }
 
-            if (Winning4NomorValue != winning4Nomor)
+            if (BettingThreshold4A != bettingThreshold4A)
             {
-                Setting winning = togelContext.Settings.Find(3);
-                winning.SettingValue = winning4Nomor;
-            }
-
-            if (Winning4NomorValue != winning4Nomor)
-            {
-                Setting winning = togelContext.Settings.Find(3);
-                winning.SettingValue = winning4Nomor;
-            }
-
-            if (BettingThreshold != bettingThreshold)
-            {
-                Setting setting = togelContext.Settings.Find(4);
-                setting.SettingValue = bettingThreshold;
+                Setting setting = togelContext.Settings.Find(3);
+                setting.SettingValue = bettingThreshold4A;
             }
 
             togelContext.SaveChanges();

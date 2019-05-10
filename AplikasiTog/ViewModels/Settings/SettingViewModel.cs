@@ -103,23 +103,65 @@ namespace Apel.ViewModels.Settings
 
         }
 
-        private double _bettingThreshold;
-        public double BettingThreshold
+        private double _bettingThreshold2A;
+        public double BettingThreshold2A
         {
             get
             {
 
 
-                if (_bettingThreshold == 0)
+                if (_bettingThreshold2A == 0)
                 {
-                    _bettingThreshold = Convert.ToDouble(SettingDictionary["BettingThreshold"]);
+                    _bettingThreshold2A = Convert.ToDouble(SettingDictionary["BettingThreshold2A"]);
                 }
-                return _bettingThreshold;
+                return _bettingThreshold2A;
             }
             set
             {
-                this._bettingThreshold = value;
-                this.RaisePropertyChanged("BettingThreshold");
+                this._bettingThreshold2A = value;
+                this.RaisePropertyChanged("BettingThreshold2A");
+            }
+
+        }
+
+        private double _bettingThreshold3A;
+        public double BettingThreshold3A
+        {
+            get
+            {
+
+
+                if (_bettingThreshold3A == 0)
+                {
+                    _bettingThreshold3A = Convert.ToDouble(SettingDictionary["BettingThreshold3A"]);
+                }
+                return _bettingThreshold3A;
+            }
+            set
+            {
+                this._bettingThreshold3A = value;
+                this.RaisePropertyChanged("BettingThreshold3A");
+            }
+
+        }
+
+        private double _bettingThreshold4A;
+        public double BettingThreshold4A
+        {
+            get
+            {
+
+
+                if (_bettingThreshold4A == 0)
+                {
+                    _bettingThreshold4A = Convert.ToDouble(SettingDictionary["BettingThreshold4A"]);
+                }
+                return _bettingThreshold4A;
+            }
+            set
+            {
+                this._bettingThreshold4A = value;
+                this.RaisePropertyChanged("BettingThreshold4A");
             }
 
         }
@@ -136,7 +178,7 @@ namespace Apel.ViewModels.Settings
                     {
                         try
                         {
-                            _settingService.UpdateSettings(Setting2NomorWinning, Setting3NomorWinning, Setting4NomorWinning, BettingThreshold.ToString());
+                            _settingService.UpdateSettings(BettingThreshold2A.ToString(), BettingThreshold3A.ToString(), BettingThreshold4A.ToString());
                             dialog.ShowOKDialog("Info", "Setting tersimpan");
                         }
                         catch (Exception ex)

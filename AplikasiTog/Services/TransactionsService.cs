@@ -58,12 +58,39 @@ namespace Apel.Services
 
             return todayTransaction;
         }
+        double bettingThreshold;
+
+        public double GetBettingThreshold(int betNumber)
+        {
+            var bettingThreshold2A = _settingService.GetSettingKeyValuePairs()["BettingThreshold2A"];
+            var bettingThreshold3A = _settingService.GetSettingKeyValuePairs()["BettingThreshold3A"];
+            var bettingThreshold4A = _settingService.GetSettingKeyValuePairs()["BettingThreshold4A"];
+            if (betNumber.ToString().Length == 2)
+            {
+                bettingThreshold = Convert.ToDouble(bettingThreshold2A);
+            }
+
+            if (betNumber.ToString().Length == 3)
+            {
+                bettingThreshold = Convert.ToDouble(bettingThreshold3A);
+            }
+
+            if (betNumber.ToString().Length == 4)
+            {
+                bettingThreshold = Convert.ToDouble(bettingThreshold4A);
+            }
+
+            return bettingThreshold;
+
+        }
 
         public List<BetRecap> GetAggregateTodayTransactions()
         {
             List<BetRecap> todayAggregateTransaction = new List<BetRecap>();
             var queryCount = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
             t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day).Count();
+            
+
             if (queryCount > 0)
             {
                 todayAggregateTransaction = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
@@ -73,10 +100,13 @@ namespace Apel.Services
                 .Select(t => new BetRecap
                 {
                     TotalBetAmount = t.Sum(tr => tr.BetAmount),
-                    BetNumber = t.FirstOrDefault().BetNumber
+                    BetNumber = t.FirstOrDefault().BetNumber,
+                    
+
                 }).ToList();
                 foreach (var tat in todayAggregateTransaction)
                 {
+                    tat.BettingThreshold = GetBettingThreshold(tat.BetNumber);
                     tat.BetRecapDetails = togelContext.Transactions.Where(tr => (tr.BetNumber == tat.BetNumber) && (tr.Date.Year == DateTime.Today.Year &&
                 tr.Date.Month == DateTime.Today.Month && tr.Date.Day == DateTime.Today.Day)).Select(upt => new BetRecapDetail
                 {
@@ -137,6 +167,7 @@ namespace Apel.Services
                 var winningNomor2Angka = Convert.ToInt32(todayWinningNomor.ToString().Substring(2, 2));
                 var winningNomor3Angka = Convert.ToInt32(todayWinningNomor.ToString().Substring(1, 3));
                 var winningNomor4Angka = Convert.ToInt32(todayWinningNomor);
+              
 
                 var userIds = togelContext.Transactions.Where(t => t.Date.Year == DateTime.Today.Year &&
                 t.Date.Month == DateTime.Today.Month && t.Date.Day == DateTime.Today.Day).Select(t => t.UserID).Distinct().ToArray();

@@ -15,7 +15,7 @@ namespace Apel.Services.Interfaces
 
         Dictionary<string, string> GetSettingKeyValuePairs();
 
-        void UpdateSettings(string winning2Nomor, string winning3Nomor, string winning4Nomor, string bettingThreshold);
+        void UpdateSettings(string bettingThreshold2A, string bettingThreshold3A, string bettingThreshold4A);
 
     }
 }

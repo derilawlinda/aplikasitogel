@@ -15,6 +15,8 @@ namespace Apel.DAL.Models
         public int BetNumber { get; set; }
         public double TotalBetAmount { get; set; }
 
+        public double BettingThreshold { get; set; }
+
         public List<BetRecapDetail> BetRecapDetails {get; set;}
     }
 }

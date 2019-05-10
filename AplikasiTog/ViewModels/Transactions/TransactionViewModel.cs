@@ -32,7 +32,8 @@ namespace Apel.ViewModels.Transactions
             PostDataRetrievalDelegate = (list) =>
             {
                 transactionService.UpdateCanSelect(list);
-            };          
+            };
+            
 
         }
 
@@ -76,12 +77,27 @@ namespace Apel.ViewModels.Transactions
             }
         }
 
-        public double BettingThreshold
+        public double BettingThreshold2A
         {
             get
             {
-                var asd = Convert.ToDouble(_settingService.GetSettingKeyValuePairs()["BettingThreshold"]);
-                return Convert.ToDouble(_settingService.GetSettingKeyValuePairs()["BettingThreshold"]);
+                return Convert.ToDouble(_settingService.GetSettingKeyValuePairs()["BettingThreshold2A"]);
+            }
+        }
+
+        public double BettingThreshold3A
+        {
+            get
+            {
+                return Convert.ToDouble(_settingService.GetSettingKeyValuePairs()["BettingThreshold3A"]);
+            }
+        }
+
+        public double BettingThreshold4A
+        {
+            get
+            {
+                return Convert.ToDouble(_settingService.GetSettingKeyValuePairs()["BettingThreshold4A"]);
             }
         }
 

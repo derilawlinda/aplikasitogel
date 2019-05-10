@@ -23,6 +23,8 @@ namespace Apel.Views.TransactionReports
         public TransactionReportByNumberUC()
         {
             InitializeComponent();
+            
         }
+        
     }
 }
